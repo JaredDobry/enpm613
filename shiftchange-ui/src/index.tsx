@@ -1,14 +1,21 @@
-import "./index.css";
-
+import { ThemeProvider } from "@fluentui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { appTheme } from "./styles";
+
+if (process.env.NODE_ENV === "development") {
+  const { worker } = require("./mocks/browser");
+  worker.start();
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider applyTo="body" theme={appTheme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
