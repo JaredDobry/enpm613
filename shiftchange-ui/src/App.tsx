@@ -1,10 +1,15 @@
+import { Stack } from "@fluentui/react";
 import React from "react";
 import { Board } from "./components/Board";
-import { TicketColumn } from "./components/TicketColumn";
 import { mockBoards } from "./mocks/mockResponses";
+import { marginStyles } from "./styles";
 
 const App: React.FC = () => {
-  return <Board board={mockBoards[0]} />;
+  return (
+    <Stack styles={marginStyles}>
+      <Board board={mockBoards[0]} />
+    </Stack>
+  );
 };
 
 export default App;

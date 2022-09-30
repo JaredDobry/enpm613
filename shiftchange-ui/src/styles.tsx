@@ -55,6 +55,15 @@ export const overflowStyles: IStackStyles = {
   },
 };
 
+export const marginStyles: IStackStyles = {
+  root: {
+    marginBottom: verticalGap * 2,
+    marginLeft: horizontalGap * 2,
+    marginRight: horizontalGap * 2,
+    marginTop: verticalGap * 2,
+  },
+};
+
 export const paddingStyles: IStackStyles = {
   root: {
     paddingBottom: verticalGap,
