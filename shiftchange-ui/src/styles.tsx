@@ -34,7 +34,7 @@ export const appTheme = createTheme({
   palette: appPalette,
 });
 
-export const ticketColumnStyles: IStackStyles = {
+export const columnStyles: IStackStyles = {
   root: {
     maxWidth: "30vw",
   },

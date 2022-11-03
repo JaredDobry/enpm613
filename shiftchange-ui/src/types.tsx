@@ -1,11 +1,10 @@
-export type TicketType = {
+export type AssignmentType = {
   id: string;
   title: string;
-  assignee: string;
   description: string;
 };
 
-export type TicketColumnType = {
+export type ColumnType = {
   id: string;
   title: string;
 };

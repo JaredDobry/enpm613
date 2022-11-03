@@ -1,13 +1,13 @@
 import { mergeStyleSets, Stack, Text } from "@fluentui/react";
 import React from "react";
 import { appPalette, paddingStyles, verticalStackTokens } from "../styles";
-import { TicketType } from "../types";
+import { AssignmentType } from "../types";
 
-export type TicketProps = {
-  ticket: TicketType;
+export type AssignmentProps = {
+  assignment: AssignmentType;
 };
 
-export const Ticket: React.FC<TicketProps> = (props) => {
+export const Assignment: React.FC<AssignmentProps> = (props) => {
   return (
     <Stack
       styles={mergeStyleSets(paddingStyles, {
@@ -16,11 +16,10 @@ export const Ticket: React.FC<TicketProps> = (props) => {
       tokens={verticalStackTokens}
     >
       <Text variant="large">
-        {props.ticket.id} - {props.ticket.title}
+        {props.assignment.id} - {props.assignment.title}
       </Text>
       <Stack>
-        <Text variant="medium">Assignee: {props.ticket.assignee}</Text>
-        <Text variant="medium">{props.ticket.description}</Text>
+        <Text variant="medium">{props.assignment.description}</Text>
       </Stack>
     </Stack>
   );

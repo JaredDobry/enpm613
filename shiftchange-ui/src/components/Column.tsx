@@ -1,23 +1,23 @@
 import { Stack, mergeStyleSets, Text } from "@fluentui/react";
 import React from "react";
 import {
-  ticketColumnStyles,
+  columnStyles,
   verticalStackTokens,
   paddingStyles,
   appPalette,
 } from "../styles";
-import { TicketColumnType, TicketType } from "../types";
-import { Ticket } from "./Ticket";
+import { ColumnType, AssignmentType } from "../types";
+import { Assignment } from "./Assignment";
 
-export type TicketColumnProps = {
-  column: TicketColumnType;
+export type ColumnProps = {
+  column: ColumnType;
 };
 
-export const TicketColumn: React.FC<TicketColumnProps> = (props) => {
-  const [tickets, setTickets] = React.useState<TicketType[]>();
+export const Column: React.FC<ColumnProps> = (props) => {
+  const [assignments, setAssignments] = React.useState<AssignmentType[]>();
 
   React.useEffect(() => {
-    const fetchTickets = async () => {
+    const fetchAssignments = async () => {
       const response: Response = await fetch(`/column?id=${props.column.id}`);
       if (!response.ok) {
         console.log(
@@ -25,24 +25,24 @@ export const TicketColumn: React.FC<TicketColumnProps> = (props) => {
         );
         return;
       }
-      const data: TicketType[] = Array.from(await response.json());
-      setTickets(data);
+      const data: AssignmentType[] = Array.from(await response.json());
+      setAssignments(data);
     };
 
-    fetchTickets();
+    fetchAssignments();
   }, [props.column.id]);
 
-  if (!tickets) return null;
+  if (!assignments) return null;
   return (
     <Stack
-      styles={mergeStyleSets(paddingStyles, ticketColumnStyles, {
+      styles={mergeStyleSets(paddingStyles, columnStyles, {
         root: { background: appPalette.neutralLight },
       })}
       tokens={verticalStackTokens}
     >
       <Text variant="xLarge">{props.column.title}</Text>
-      {tickets.map((ticket: TicketType) => {
-        return <Ticket key={ticket.id} ticket={ticket} />;
+      {assignments.map((assignment: AssignmentType) => {
+        return <Assignment key={assignment.id} assignment={assignment} />;
       })}
     </Stack>
   );

@@ -1,31 +1,32 @@
 import { rest } from "msw";
-import { BoardType, TicketType } from "../types";
+import { BoardType, AssignmentType } from "../types";
 import {
   mockBoards,
   mockColumns,
-  mockTicketsBacklog,
-  mockTicketsCompleted,
-  mockTicketsInProgress,
+  mockAssignmentsBacklog,
+  mockAssignmentsCompleted,
+  mockAssignmentsInProgress,
 } from "./mockResponses";
 
 export const handlers = [
-  rest.get("/ticket", (req, res, ctx) => {
-    const ticketId = req.url.searchParams.get("id");
+  rest.get("/assignment", (req, res, ctx) => {
+    const assignmentId = req.url.searchParams.get("id");
 
-    if (!ticketId) return res(ctx.status(400, "No ticket ID supplied."));
+    if (!assignmentId)
+      return res(ctx.status(400, "No assignment ID supplied."));
 
-    const allTickets = [
-      ...mockTicketsBacklog,
-      ...mockTicketsCompleted,
-      ...mockTicketsInProgress,
+    const allAssignments = [
+      ...mockAssignmentsBacklog,
+      ...mockAssignmentsCompleted,
+      ...mockAssignmentsInProgress,
     ];
-    const ticket = allTickets.find((t: TicketType) => {
-      return t.id === ticketId;
+    const assignment = allAssignments.find((a: AssignmentType) => {
+      return a.id === assignmentId;
     });
 
-    if (!ticket)
-      return res(ctx.status(404, `Ticket ID ${ticketId} not found.`));
-    return res(ctx.status(200), ctx.json(ticket));
+    if (!assignment)
+      return res(ctx.status(404, `Assignment ID ${assignmentId} not found.`));
+    return res(ctx.status(200), ctx.json(assignment));
   }),
 
   rest.get("/column", (req, res, ctx) => {
@@ -34,11 +35,11 @@ export const handlers = [
     if (!columnId) return res(ctx.status(400, "No column ID supplied."));
 
     if (columnId === mockColumns[0].id)
-      return res(ctx.status(200), ctx.json(mockTicketsBacklog));
+      return res(ctx.status(200), ctx.json(mockAssignmentsBacklog));
     else if (columnId === mockColumns[1].id)
-      return res(ctx.status(200), ctx.json(mockTicketsInProgress));
+      return res(ctx.status(200), ctx.json(mockAssignmentsCompleted));
     else if (columnId === mockColumns[2].id)
-      return res(ctx.status(200), ctx.json(mockTicketsCompleted));
+      return res(ctx.status(200), ctx.json(mockAssignmentsInProgress));
     else return res(ctx.status(404, `Column ID ${columnId} not found.`));
   }),
 

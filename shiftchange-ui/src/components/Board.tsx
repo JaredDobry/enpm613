@@ -1,7 +1,7 @@
 import React from "react";
-import { BoardType, TicketColumnType } from "../types";
+import { BoardType, ColumnType } from "../types";
 import { Stack, Text } from "@fluentui/react";
-import { TicketColumn } from "./TicketColumn";
+import { Column } from "./Column";
 import { verticalStackTokens } from "../styles";
 
 export type BoardProps = {
@@ -9,7 +9,7 @@ export type BoardProps = {
 };
 
 export const Board: React.FC<BoardProps> = (props) => {
-  const [columns, setColumns] = React.useState<TicketColumnType[]>();
+  const [columns, setColumns] = React.useState<ColumnType[]>();
 
   React.useEffect(() => {
     const fetchColumns = async () => {
@@ -20,7 +20,7 @@ export const Board: React.FC<BoardProps> = (props) => {
         );
         return;
       }
-      const data: TicketColumnType[] = Array.from(await response.json());
+      const data: ColumnType[] = Array.from(await response.json());
       setColumns(data);
     };
 
@@ -33,9 +33,9 @@ export const Board: React.FC<BoardProps> = (props) => {
       <Text variant="xxLarge">{props.board.title}</Text>
 
       <Stack horizontal horizontalAlign="space-between">
-        {columns.map((column: TicketColumnType) => {
+        {columns.map((column: ColumnType) => {
           console.log(`column: ${column.id}`);
-          return <TicketColumn column={column} key={column.id} />;
+          return <Column column={column} key={column.id} />;
         })}
       </Stack>
     </Stack>
