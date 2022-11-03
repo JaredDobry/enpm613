@@ -53,4 +53,8 @@ export const handlers = [
     if (!board) res(ctx.status(404, `Board ID ${boardId} not found.`));
     return res(ctx.status(200), ctx.json(mockColumns));
   }),
+
+  rest.get("/boards", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(mockBoards));
+  }),
 ];
