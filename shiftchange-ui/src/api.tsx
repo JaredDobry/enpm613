@@ -1,0 +1,108 @@
+export const BASE_URL = "localhost";
+export const USER_URL = (userId: string) => {
+  return `${BASE_URL}/user/${userId}`;
+};
+export const ENROLLMENTS_URL = (userId: string) => {
+  return `${USER_URL(userId)}/enrollments`;
+};
+export const CLASS_URL = (classId: string) => {
+  return `${BASE_URL}/class/${classId}`;
+};
+export const CLASS_MATERIALS_URL = (classId: string) => {
+  return `${CLASS_URL(classId)}/class/${classId}`;
+};
+export const ASSIGNMENT_URL = (assignmentId: string) => {
+  return `${BASE_URL}/assignment/${assignmentId}`;
+};
+export const ASSIGNMENT_STATUS_URL = (assignmentId: string, userId: string) => {
+  return `${ASSIGNMENT_URL(assignmentId)}/status/${userId}`;
+};
+export const ASSIGNMENT_SUBMISSIONS_URL = (
+  assignmentId: string,
+  userId?: string
+) => {
+  return `${ASSIGNMENT_URL(assignmentId)}/submissions${
+    userId ? `/${userId}` : ""
+  }`;
+};
+export const ASSIGNMENT_COMMENTS_URL = (
+  assignmentId: string,
+  studentId: string
+) => {
+  return `${ASSIGNMENT_URL(assignmentId)}/comments/${studentId}`;
+};
+export const ASSIGNMENTS_URL = (id: string, type: "user" | "class") => {
+  if (type === "user") return `${USER_URL(id)}/assignments`;
+  else return `${CLASS_URL(id)}/assignments`;
+};
+
+export type ApiError = {
+  message: string;
+};
+
+export type ApiUser = {
+  id: string;
+  name: string;
+  sysadmin?: boolean;
+};
+
+export type ApiClass = {
+  id: string;
+  code: string;
+  name: string;
+};
+
+enum EnrollmentTypes {
+  student = "student",
+  teaching_assistant = "teaching_assistant",
+  professor = "professor",
+}
+
+export type ApiEnrollment = {
+  class_id: string;
+  user_id: string;
+  enrollment_type: EnrollmentTypes;
+};
+
+export type ApiCourseMaterial = {
+  id: string;
+  class_id: string;
+  name: string;
+  link: string;
+};
+
+export type ApiAssignment = {
+  id: string;
+  class_id: string;
+  name: string;
+  link: string;
+  grade?: number;
+};
+
+enum AssignmentStatusTypes {
+  todo = "todo",
+  inwork = "inwork",
+  complete = "complete",
+}
+
+export type ApiAssignmentStatus = {
+  assignment_id: string;
+  user_id: string;
+  status: AssignmentStatusTypes;
+};
+
+export type ApiSubmission = {
+  id: string;
+  assignment_id: string;
+  link: string;
+  timestamp: string;
+};
+
+export type ApiComment = {
+  id: string;
+  assignment_id: string;
+  student_id: string;
+  author_id: string;
+  text: string;
+  timestamp: string;
+};

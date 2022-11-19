@@ -1,498 +1,501 @@
 openapi: "3.0.0"
 info:
-    version: "1.0.0"
-    title: "ShiftChange API"
-    description: Learning Management System utilizing Kanban
+  version: "1.0.0"
+  title: "ShiftChange API"
+  description: Learning Management System utilizing Kanban
 
 paths:
-    /user/{userId}:
-        parameters:
-            - name: userId
-              description: The uuid of the User
-              in: path
-              required: true
+  /user/{userId}:
+    parameters:
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The user corresponding to userId
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The user corresponding to userId
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/User"
-                404:
-                    description: User not found
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /user/{userId}/enrollments:
-        parameters:
-            - name: userId
-              description: The uuid of the User
-              in: path
-              required: true
+                $ref: "#/components/schemas/User"
+        404:
+          description: User not found
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The enrollments corresponding to userId
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Enrollment"
-                404:
-                    description: User has no enrollments
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /user/{userId}/assignments:
-        parameters:
-            - name: userId
-              description: The uuid of the User
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The assignments corresponding to all classes userId is enrolled in
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Assignment"
-                404:
-                    description: User has no assignments
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /class/{classId}:
-        parameters:
-            - name: classId
-              description: The uuid of the Class
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+  /user/{userId}/enrollments:
+    parameters:
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The enrollments corresponding to userId
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The class corresponding to this classId
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Class"
-                404:
-                    description: Class does not exist
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /class/{classId}/materials:
-        parameters:
-            - name: classId
-              description: The uuid of the Class
-              in: path
-              required: true
+                type: array
+                items:
+                  $ref: "#/components/schemas/Enrollment"
+        404:
+          description: User has no enrollments
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The course materials for this class
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/CourseMaterial"
-                404:
-                    description: Class has no materials
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /class/{classId}/assignments:
-        parameters:
-            - name: classId
-              description: The uuid of the Class
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The assignments for this class
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Assignment"
-                404:
-                    description: Class has no assignments
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /assignment/{assignmentId}:
-        parameters:
-            - name: assignmentId
-              description: The uuid of the Assignment
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+  /user/{userId}/assignments:
+    parameters:
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The assignments corresponding to all classes userId is enrolled in
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The assignment for this uuid
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Assignment"
-                404:
-                    description: Assignment does not exist
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /assignment/{assignmentId}/status/{userId}:
-        parameters:
-            - name: assignmentId
-              description: The uuid of the Assignment
-              in: path
-              required: true
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+        404:
+          description: User has no assignments
+          content:
+            application/json:
               schema:
-                  type: string
-            - name: userId
-              description: The uuid of the User
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: The status for this assignment for the given user
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/AssignmentStatus"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /assignment/{assignmentId}/submissions:
-        parameters:
-            - name: assignmentId
-              description: The uuid of the Assignment
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+  /class/{classId}:
+    parameters:
+      - name: classId
+        description: The uuid of the Class
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The class corresponding to this classId
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: All submissions for this assignment
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Submission"
-                404:
-                    description: Assignment has no submissions
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /assignment/{assignmentId}/submissions/{userId}:
-        parameters:
-            - name: assignmentId
-              description: The uuid of the Assignment
-              in: path
-              required: true
+                $ref: "#/components/schemas/Class"
+        404:
+          description: Class does not exist
+          content:
+            application/json:
               schema:
-                  type: string
-            - name: userId
-              description: The uuid of the User
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: All submissions for this assignment by the given user
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Submission"
-                404:
-                    description: Assignment has no submissions from the given user
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-    /assignment/{assignmentId}/comments/{studentId}:
-        parameters:
-            - name: assignmentId
-              description: The uuid of the Assignment
-              in: path
-              required: true
+                $ref: "#/components/schemas/Error"
+  /class/{classId}/materials:
+    parameters:
+      - name: classId
+        description: The uuid of the Class
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The course materials for this class
+          content:
+            application/json:
               schema:
-                  type: string
-            - name: studentId
-              description: The uuid of the student being communicated with
-              in: path
-              required: true
+                type: array
+                items:
+                  $ref: "#/components/schemas/CourseMaterial"
+        404:
+          description: Class has no materials
+          content:
+            application/json:
               schema:
-                  type: string
-        get:
-            responses:
-                200:
-                    description: All comments for this assignment and student
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Comment"
-                404:
-                    description: Assignment has no comments for the given student
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                500:
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /class/{classId}/assignments:
+    parameters:
+      - name: classId
+        description: The uuid of the Class
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The assignments for this class
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+        404:
+          description: Class has no assignments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /assignment/{assignmentId}:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The assignment for this uuid
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+        404:
+          description: Assignment does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /assignment/{assignmentId}/status/{userId}:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The status for this assignment for the given user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssignmentStatus"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /assignment/{assignmentId}/submissions:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: All submissions for this assignment
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Submission"
+        404:
+          description: Assignment has no submissions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /assignment/{assignmentId}/submissions/{userId}:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: All submissions for this assignment by the given user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Submission"
+        404:
+          description: Assignment has no submissions from the given user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /assignment/{assignmentId}/comments/{studentId}:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: studentId
+        description: The uuid of the student being communicated with
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: All comments for this assignment and student
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+        404:
+          description: Assignment has no comments for the given student
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
 components:
-    schemas:
-        User:
-            type: object
-            required:
-                - id
-                - name
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                name:
-                    type: string
-                sysadmin:
-                    type: boolean
-        Class:
-            type: object
-            required:
-                - id
-                - code
-                - name
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                code:
-                    type: string
-                name:
-                    type: string
-        Enrollment:
-            type: object
-            required:
-                - user_id
-                - class_id
-                - enrollment_type
-            properties:
-                user_id:
-                    type: string
-                    format: uuid
-                class_id:
-                    type: string
-                    format: uuid
-                enrollment_type:
-                    enum:
-                        - student
-                        - teaching_assistant
-                        - professor
-        CourseMaterial:
-            type: object
-            required:
-                - id
-                - class_id
-                - name
-                - link
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                class_id:
-                    type: string
-                    format: uuid
-                name:
-                    type: string
-                link:
-                    type: string
-        Assignment:
-            type: object
-            required:
-                - id
-                - class_id
-                - name
-                - link
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                class_id:
-                    type: string
-                    format: uuid
-                name:
-                    type: string
-                link:
-                    type: string
-                grade:
-                    type: number
-                    format: float
-        AssignmentStatus:
-            type: object
-            required:
-                - assignment_id
-                - user_id
-                - status
-            properties:
-                assignment_id:
-                    type: string
-                    format: uuid
-                user_id:
-                    type: string
-                    format: uuid
-                status:
-                    enum:
-                        - todo
-                        - inwork
-                        - complete
-        Submission:
-            type: object
-            required:
-                - id
-                - assignment_id
-                - link
-                - timestamp
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                assignment_id:
-                    type: string
-                    format: uuid
-                link:
-                    type: string
-                timestamp:
-                    type: string
-                    format: date-time
-        Comment:
-            type: object
-            required:
-                - id
-                - assignment_id
-                - student_id
-                - author_id
-                - timestamp
-            properties:
-                id:
-                    type: string
-                    format: uuid
-                assignment_id:
-                    type: string
-                    format: uuid
-                student_id:
-                    type: string
-                    format: uuid
-                author_id:
-                    type: string
-                    format: uuid
-                timestamp:
-                    type: string
-                    format: date-time
-        Error:
-            type: object
-            required:
-                - message
-            properties:
-                message:
-                    type: string
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        sysadmin:
+          type: boolean
+    Class:
+      type: object
+      required:
+        - id
+        - code
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+    Enrollment:
+      type: object
+      required:
+        - user_id
+        - class_id
+        - enrollment_type
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        class_id:
+          type: string
+          format: uuid
+        enrollment_type:
+          enum:
+            - student
+            - teaching_assistant
+            - professor
+    CourseMaterial:
+      type: object
+      required:
+        - id
+        - class_id
+        - name
+        - link
+      properties:
+        id:
+          type: string
+          format: uuid
+        class_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        link:
+          type: string
+    Assignment:
+      type: object
+      required:
+        - id
+        - class_id
+        - name
+        - link
+      properties:
+        id:
+          type: string
+          format: uuid
+        class_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        link:
+          type: string
+        grade:
+          type: number
+          format: float
+    AssignmentStatus:
+      type: object
+      required:
+        - assignment_id
+        - user_id
+        - status
+      properties:
+        assignment_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        status:
+          enum:
+            - todo
+            - inwork
+            - complete
+    Submission:
+      type: object
+      required:
+        - id
+        - assignment_id
+        - link
+        - timestamp
+      properties:
+        id:
+          type: string
+          format: uuid
+        assignment_id:
+          type: string
+          format: uuid
+        link:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Comment:
+      type: object
+      required:
+        - id
+        - assignment_id
+        - student_id
+        - author_id
+        - text
+        - timestamp
+      properties:
+        id:
+          type: string
+          format: uuid
+        assignment_id:
+          type: string
+          format: uuid
+        student_id:
+          type: string
+          format: uuid
+        author_id:
+          type: string
+          format: uuid
+        text:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
