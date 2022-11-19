@@ -341,7 +341,40 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-
+  /assignment/{assignmentId}/grade/{userId}:
+    parameters:
+      - name: assignmentId
+        description: The uuid of the Assignment
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        description: The uuid of the User
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The grade for this user on this assignment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Grade"
+        404:
+          description: No grade assigned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -425,9 +458,6 @@ components:
           type: string
         link:
           type: string
-        grade:
-          type: number
-          format: float
     AssignmentStatus:
       type: object
       required:
@@ -465,6 +495,22 @@ components:
         timestamp:
           type: string
           format: date-time
+    Grade:
+      type: object
+        required:
+          - assignment_id
+          - user_id
+          - grade
+        properties:
+          assignment_id:
+            type: string
+            format: uuid
+          user_id:
+            type: string
+            format: uuid
+          grade:
+            type: number
+            format: float
     Comment:
       type: object
       required:

@@ -1,4 +1,4 @@
-export const BASE_URL = "localhost";
+export const BASE_URL = "";
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -52,7 +52,7 @@ export type ApiClass = {
   name: string;
 };
 
-enum EnrollmentTypes {
+export enum EnrollmentTypes {
   student = "student",
   teaching_assistant = "teaching_assistant",
   professor = "professor",
@@ -76,10 +76,9 @@ export type ApiAssignment = {
   class_id: string;
   name: string;
   link: string;
-  grade?: number;
 };
 
-enum AssignmentStatusTypes {
+export enum AssignmentStatusTypes {
   todo = "todo",
   inwork = "inwork",
   complete = "complete",
@@ -96,6 +95,12 @@ export type ApiSubmission = {
   assignment_id: string;
   link: string;
   timestamp: string;
+};
+
+export type ApiGrade = {
+  assignment_id: string;
+  user_id: string;
+  grade: number;
 };
 
 export type ApiComment = {

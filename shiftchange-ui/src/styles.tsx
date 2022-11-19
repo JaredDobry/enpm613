@@ -40,8 +40,8 @@ export const columnStyles: IStackStyles = {
   },
 };
 
-export const horizontalGap = 20;
-export const verticalGap = 20;
+export const horizontalGap = 10;
+export const verticalGap = 10;
 export const horizontalStackTokens: IStackTokens = {
   childrenGap: horizontalGap,
 };

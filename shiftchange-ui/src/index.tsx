@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@fluentui/react";
+import { initializeIcons, ThemeProvider } from "@fluentui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -10,6 +10,8 @@ if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
   worker.start();
 }
+
+initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
