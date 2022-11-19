@@ -170,4 +170,34 @@ export const mockStatuses: ApiAssignmentStatus[] = [
     user_id: "0",
     status: AssignmentStatusTypes.todo,
   },
+  {
+    assignment_id: "0",
+    user_id: "1",
+    status: AssignmentStatusTypes.complete,
+  },
+  {
+    assignment_id: "1",
+    user_id: "1",
+    status: AssignmentStatusTypes.inwork,
+  },
+  {
+    assignment_id: "2",
+    user_id: "1",
+    status: AssignmentStatusTypes.inwork,
+  },
+  {
+    assignment_id: "3",
+    user_id: "1",
+    status: AssignmentStatusTypes.todo,
+  },
+  {
+    assignment_id: "4",
+    user_id: "1",
+    status: AssignmentStatusTypes.todo,
+  },
+  {
+    assignment_id: "5",
+    user_id: "1",
+    status: AssignmentStatusTypes.todo,
+  },
 ];

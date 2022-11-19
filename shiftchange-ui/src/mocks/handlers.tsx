@@ -1,5 +1,10 @@
 import { rest } from "msw";
-import { mockClasses, mockEnrollments } from "./mockResponses";
+import {
+  mockAssignments,
+  mockClasses,
+  mockEnrollments,
+  mockStatuses,
+} from "./mockResponses";
 
 export const handlers = [
   rest.get("/user/:userId/enrollments", (req, res, ctx) => {
@@ -25,6 +30,35 @@ export const handlers = [
     if (!theClass)
       return res(ctx.status(404, `Class ${classId} doesn't exist`));
     else return res(ctx.status(200), ctx.json(theClass));
+  }),
+  rest.get("/class/:classId/assignments", (req, res, ctx) => {
+    const { classId } = req.params;
+
+    const assignments = mockAssignments.filter((value) => {
+      return value.class_id === classId;
+    });
+
+    if (assignments.length === 0)
+      return res(
+        ctx.status(404, `Class ${classId} doesn't have any assignments`)
+      );
+    else return res(ctx.status(200), ctx.json(assignments));
+  }),
+  rest.get("/assignment/:assignmentId/status/:userId", (req, res, ctx) => {
+    const { assignmentId, userId } = req.params;
+
+    const theStatus = mockStatuses.find((value) => {
+      return value.assignment_id === assignmentId && value.user_id === userId;
+    });
+
+    if (!theStatus)
+      return res(
+        ctx.status(
+          404,
+          `User ${userId} doesn't have a status for assignment ${assignmentId}`
+        )
+      );
+    else return res(ctx.status(200), ctx.json(theStatus));
   }),
 ];
 

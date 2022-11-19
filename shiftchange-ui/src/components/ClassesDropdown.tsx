@@ -5,7 +5,7 @@ import { horizontalStackTokens } from "../styles";
 
 type ClassesDropdownProps = {
   userId: string;
-  setClasses: (classID: string | string[]) => void;
+  setClasses: (classID: string[]) => void;
 };
 
 export const ClassesDropdown: React.FC<ClassesDropdownProps> = (props) => {
@@ -26,27 +26,26 @@ export const ClassesDropdown: React.FC<ClassesDropdownProps> = (props) => {
               key: cData.id,
               text: cData.code,
             });
-          }
+          } else console.log(`Error fetching class data for ${value.class_id}`);
         });
         setClasses(newClasses);
-        setSelectedKeys(
-          newClasses.map((value) => {
-            return value.key as string;
-          })
-        );
       } else {
-        console.log("Error");
+        console.log(`Error fetching enrollments for ${props.userId}`);
       }
     };
 
     getClasses();
   }, [props.userId]);
 
-  if (!classes) return <></>;
+  React.useEffect(() => {
+    props.setClasses(selectedKeys);
+  }, [props, selectedKeys]);
+
+  if (!classes) return null;
 
   return (
     <Stack horizontal tokens={horizontalStackTokens} verticalAlign="center">
-      <Text>Class(es)</Text>
+      <Text>Classes</Text>
       <Dropdown
         options={classes}
         multiSelect
@@ -55,14 +54,12 @@ export const ClassesDropdown: React.FC<ClassesDropdownProps> = (props) => {
           if (option) {
             if (option.selected) {
               setSelectedKeys([...selectedKeys, option.key as string]);
-              props.setClasses(selectedKeys);
             } else {
               setSelectedKeys(
                 selectedKeys.filter((value) => {
                   return value !== option.key;
                 })
               );
-              props.setClasses(selectedKeys);
             }
           }
         }}
