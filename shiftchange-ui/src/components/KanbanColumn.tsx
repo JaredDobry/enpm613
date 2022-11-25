@@ -1,7 +1,7 @@
 import { Separator, Stack, Text } from "@fluentui/react";
 import React from "react";
 import { ApiAssignment, AssignmentStatusTypes } from "../api";
-import { verticalStackTokens } from "../styles";
+import { appPalette, verticalStackTokens } from "../styles";
 import { KanbanAssignment } from "./KanbanAssignment";
 
 const getStatusLabel = (statusType: AssignmentStatusTypes) => {
@@ -22,7 +22,15 @@ type KanbanColumnProps = {
 
 export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
   return (
-    <Stack>
+    <Stack
+      styles={{
+        root: {
+          border: `thin solid ${appPalette.themeDark}`,
+          height: "100%",
+          padding: 10,
+        },
+      }}
+    >
       <Text variant="xxLarge">{getStatusLabel(props.statusType)}</Text>
       <Separator />
       <Stack tokens={verticalStackTokens}>

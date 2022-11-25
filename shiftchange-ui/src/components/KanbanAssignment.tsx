@@ -2,7 +2,7 @@ import { IconButton, Stack, Text } from "@fluentui/react";
 import React from "react";
 import { ApiAssignment, ApiClass, CLASS_URL } from "../api";
 import { leftIcon, rightIcon } from "../icons";
-import { horizontalStackTokens } from "../styles";
+import { appPalette, horizontalStackTokens } from "../styles";
 
 type KanbanAssignmentProps = {
   assignment: ApiAssignment;
@@ -27,7 +27,18 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
   if (!classCode) return null;
 
   return (
-    <Stack horizontal tokens={horizontalStackTokens} verticalAlign="center">
+    <Stack
+      horizontal
+      styles={{
+        root: {
+          backgroundColor: appPalette.white,
+          border: `thin solid ${appPalette.themeDark}`,
+          padding: 4,
+        },
+      }}
+      tokens={horizontalStackTokens}
+      verticalAlign="center"
+    >
       {props.showLeft && <IconButton iconProps={leftIcon} />}
       <Stack.Item grow>
         <Stack>

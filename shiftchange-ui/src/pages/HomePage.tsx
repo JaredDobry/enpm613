@@ -85,17 +85,13 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
   }, [assignments, assignmentStatuses]);
 
   return (
-    <Stack>
+    <Stack verticalFill>
       <ClassesDropdown
         userId={props.userId}
         setClasses={(classes: string[]) => setClasses(classes)}
       />
       <Separator />
-      <Stack
-        horizontal
-        horizontalAlign="space-between"
-        tokens={horizontalStackTokens}
-      >
+      <Stack horizontal horizontalAlign="space-between" verticalFill>
         <Stack.Item grow>
           <KanbanColumn
             assignments={assignments.filter((value) => {
