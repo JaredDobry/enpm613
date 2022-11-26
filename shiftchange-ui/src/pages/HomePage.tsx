@@ -12,6 +12,7 @@ import { CourseMaterials } from "../components/CourseMaterials";
 import { KanbanColumn } from "../components/KanbanColumn";
 
 type HomePageProps = {
+  darkMode: boolean;
   userId: string;
 };
 
@@ -101,6 +102,7 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
                 }) !== undefined
               );
             })}
+            darkMode={props.darkMode}
             statusType={AssignmentStatusTypes.todo}
           />
         </Stack.Item>
@@ -109,6 +111,7 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
             assignments={assignments.filter((value) => {
               return value.id in filteredAssignments.inworks;
             })}
+            darkMode={props.darkMode}
             statusType={AssignmentStatusTypes.inwork}
           />
         </Stack.Item>
@@ -117,6 +120,7 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
             assignments={assignments.filter((value) => {
               return value.id in filteredAssignments.completes;
             })}
+            darkMode={props.darkMode}
             statusType={AssignmentStatusTypes.complete}
           />
         </Stack.Item>

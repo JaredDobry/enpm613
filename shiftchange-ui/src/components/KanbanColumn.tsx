@@ -1,7 +1,7 @@
 import { Separator, Stack, Text } from "@fluentui/react";
 import React from "react";
 import { ApiAssignment, AssignmentStatusTypes } from "../api";
-import { appPalette, verticalStackTokens } from "../styles";
+import { darkPalette, lightPalette, verticalStackTokens } from "../styles";
 import { KanbanAssignment } from "./KanbanAssignment";
 
 const getStatusLabel = (statusType: AssignmentStatusTypes) => {
@@ -17,6 +17,7 @@ const getStatusLabel = (statusType: AssignmentStatusTypes) => {
 
 type KanbanColumnProps = {
   assignments: ApiAssignment[];
+  darkMode: boolean;
   statusType: AssignmentStatusTypes;
 };
 
@@ -25,7 +26,16 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
     <Stack
       styles={{
         root: {
-          border: `thin solid ${appPalette.themeDark}`,
+          borderBottomWidth: 1,
+          borderColor: props.darkMode
+            ? darkPalette.themeDark
+            : lightPalette.themeDark,
+          borderLeftWidth:
+            props.statusType !== AssignmentStatusTypes.inwork ? 1 : 0,
+          borderRightWidth:
+            props.statusType !== AssignmentStatusTypes.inwork ? 1 : 0,
+          borderStyle: "solid",
+          borderTopWidth: 1,
           height: "100%",
           padding: 10,
         },
@@ -38,6 +48,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
           return (
             <KanbanAssignment
               assignment={value}
+              darkMode={props.darkMode}
               key={`${props.statusType}-${value.id}`}
               showLeft={props.statusType !== AssignmentStatusTypes.todo}
               showRight={props.statusType !== AssignmentStatusTypes.complete}

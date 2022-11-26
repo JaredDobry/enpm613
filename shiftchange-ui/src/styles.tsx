@@ -1,11 +1,6 @@
-import {
-  IStackStyles,
-  IStackTokens,
-  createTheme,
-  IPalette,
-} from "@fluentui/react";
+import { IStackStyles, IStackTokens, IPalette } from "@fluentui/react";
 
-export const appPalette: Partial<IPalette> = {
+export const darkPalette: Partial<IPalette> = {
   themePrimary: "#d47e3d",
   themeLighterAlt: "#fdf9f6",
   themeLighter: "#f8e8dc",
@@ -30,9 +25,30 @@ export const appPalette: Partial<IPalette> = {
   white: "#2b2b2b",
 };
 
-export const appTheme = createTheme({
-  palette: appPalette,
-});
+export const lightPalette: Partial<IPalette> = {
+  themePrimary: "#d47e3d",
+  themeLighterAlt: "#fdf9f6",
+  themeLighter: "#f8e8dc",
+  themeLight: "#f2d5be",
+  themeTertiary: "#e5ae83",
+  themeSecondary: "#d98c51",
+  themeDarkAlt: "#be7237",
+  themeDark: "#a1602f",
+  themeDarker: "#774722",
+  neutralLighterAlt: "#f8f8f8",
+  neutralLighter: "#f4f4f4",
+  neutralLight: "#eaeaea",
+  neutralQuaternaryAlt: "#dadada",
+  neutralQuaternary: "#d0d0d0",
+  neutralTertiaryAlt: "#c8c8c8",
+  neutralTertiary: "#a19f9d",
+  neutralSecondary: "#605e5c",
+  neutralPrimaryAlt: "#3b3a39",
+  neutralPrimary: "#323130",
+  neutralDark: "#201f1e",
+  black: "#000000",
+  white: "#ffffff",
+};
 
 export const columnStyles: IStackStyles = {
   root: {

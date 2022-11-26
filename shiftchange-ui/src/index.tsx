@@ -1,10 +1,9 @@
-import { initializeIcons, ThemeProvider } from "@fluentui/react";
+import { initializeIcons } from "@fluentui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { appTheme } from "./styles";
 
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
@@ -15,9 +14,7 @@ initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider applyTo="body" theme={appTheme}>
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
