@@ -8,19 +8,19 @@ import {
   ASSIGNMENT_STATUS_URL,
 } from "../api";
 import { ClassesDropdown } from "../components/ClassesDropdown";
+import { CourseMaterials } from "../components/CourseMaterials";
 import { KanbanColumn } from "../components/KanbanColumn";
-import { horizontalStackTokens } from "../styles";
 
 type HomePageProps = {
   userId: string;
 };
 
 export const HomePage: React.FC<HomePageProps> = (props) => {
-  const [classes, setClasses] = React.useState<string[]>([]);
   const [assignments, setAssignments] = React.useState<ApiAssignment[]>([]);
   const [assignmentStatuses, setAssignmentStatuses] = React.useState<
     ApiAssignmentStatus[]
   >([]);
+  const [classes, setClasses] = React.useState<string[]>([]);
   const [filteredAssignments, setFilteredAssignments] = React.useState<{
     todos: string[];
     inworks: string[];
@@ -121,6 +121,15 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
           />
         </Stack.Item>
       </Stack>
+
+      {classes.map((value: string) => {
+        return (
+          <div key={`cm-${value}`}>
+            <Separator />
+            <CourseMaterials course={value} userId={props.userId} />
+          </div>
+        );
+      })}
     </Stack>
   );
 };

@@ -2,6 +2,7 @@ import { rest } from "msw";
 import {
   mockAssignments,
   mockClasses,
+  mockCourseMaterial,
   mockEnrollments,
   mockStatuses,
 } from "./mockResponses";
@@ -43,6 +44,19 @@ export const handlers = [
         ctx.status(404, `Class ${classId} doesn't have any assignments`)
       );
     else return res(ctx.status(200), ctx.json(assignments));
+  }),
+  rest.get("/class/:classId/materials", (req, res, ctx) => {
+    const { classId } = req.params;
+
+    const materials = mockCourseMaterial.filter((value) => {
+      return value.class_id === classId;
+    });
+
+    if (materials.length === 0) {
+      return res(
+        ctx.status(404, `Class ${classId} doesn't have any course materials`)
+      );
+    } else return res(ctx.status(200), ctx.json(materials));
   }),
   rest.get("/assignment/:assignmentId/status/:userId", (req, res, ctx) => {
     const { assignmentId, userId } = req.params;

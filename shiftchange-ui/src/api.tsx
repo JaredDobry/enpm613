@@ -9,7 +9,7 @@ export const CLASS_URL = (classId: string) => {
   return `${BASE_URL}/class/${classId}`;
 };
 export const CLASS_MATERIALS_URL = (classId: string) => {
-  return `${CLASS_URL(classId)}/class/${classId}`;
+  return `${CLASS_URL(classId)}/materials`;
 };
 export const ASSIGNMENT_URL = (assignmentId: string) => {
   return `${BASE_URL}/assignment/${assignmentId}`;

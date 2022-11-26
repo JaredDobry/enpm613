@@ -98,7 +98,32 @@ export const mockEnrollments: ApiEnrollment[] = [
   },
 ];
 
-export const mockCourseMaterial: ApiCourseMaterial[] = [];
+export const mockCourseMaterial: ApiCourseMaterial[] = [
+  {
+    id: "0",
+    class_id: "2",
+    link: "www.google.com",
+    name: "Lecture 1",
+  },
+  {
+    id: "1",
+    class_id: "2",
+    link: "www.google.com",
+    name: "Lecture 2",
+  },
+  {
+    id: "2",
+    class_id: "2",
+    link: "www.google.com",
+    name: "Lecture 3",
+  },
+  {
+    id: "3",
+    class_id: "2",
+    link: "www.google.com",
+    name: "Lecture 4",
+  },
+];
 
 export const mockAssignments: ApiAssignment[] = [
   {
