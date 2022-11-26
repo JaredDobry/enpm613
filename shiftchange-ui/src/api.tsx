@@ -1,4 +1,5 @@
 export const BASE_URL = "";
+export const LOGIN_URL = `${BASE_URL}/login`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };

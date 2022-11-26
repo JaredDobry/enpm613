@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import { sha256 } from "sha.js";
 import {
   mockAssignments,
   mockClasses,
@@ -73,6 +74,13 @@ export const handlers = [
         )
       );
     else return res(ctx.status(200), ctx.json(theStatus));
+  }),
+  rest.post("/login", async (req, res, ctx) => {
+    const encrypted = await req.json();
+
+    const fail = new sha256().update("fail").digest("hex");
+    if (encrypted === fail) return res(ctx.status(500, "Login failed"));
+    else return res(ctx.status(200), ctx.json(fail));
   }),
 ];
 

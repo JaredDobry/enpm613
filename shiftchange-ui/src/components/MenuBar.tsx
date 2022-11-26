@@ -4,6 +4,7 @@ import { Settings, SettingsProps } from "./Settings";
 
 interface MenuBarProps extends SettingsProps {
   setPage: (page: "home" | "assignment") => void;
+  signOut: () => void;
 }
 
 export const MenuBar: React.FC<MenuBarProps> = (props) => {
@@ -16,11 +17,17 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
           iconProps={{ iconName: "Home" }}
           onClick={() => props.setPage("home")}
         />
-        <IconButton
-          iconProps={{ iconName: "Settings" }}
-          id={"settingsButton"}
-          onClick={() => setShowSettings(true)}
-        />
+        <Stack horizontal>
+          <IconButton
+            iconProps={{ iconName: "SignOut" }}
+            onClick={props.signOut}
+          />
+          <IconButton
+            iconProps={{ iconName: "Settings" }}
+            id={"settingsButton"}
+            onClick={() => setShowSettings(true)}
+          />
+        </Stack>
       </Stack>
       <Callout
         hidden={!showSettings}
