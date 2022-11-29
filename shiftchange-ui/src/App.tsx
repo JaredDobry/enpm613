@@ -6,10 +6,12 @@ import { MenuBar } from "./components/MenuBar";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
+import { AssignmentPage } from "./pages/AssignmentPage";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
   const [page, setPage] = React.useState<string>("login");
+  const [pageData, setPageData] = React.useState<any>();
   const [token, setToken] = React.useState<string>();
 
   const theme = createTheme({ palette: darkMode ? darkPalette : lightPalette });
@@ -23,6 +25,7 @@ const App: React.FC = () => {
             setDarkMode={setDarkMode}
             setPage={(page: "home" | "assignment") => {
               setPage(page);
+              setPageData(undefined);
             }}
             signOut={() => {
               setToken(undefined);
@@ -39,7 +42,24 @@ const App: React.FC = () => {
             }}
           />
         )}
-        {page === "home" && <HomePage theme={theme} userId="1" />}
+        {page === "home" && (
+          <HomePage
+            setPage={(page: "home" | "assignment", data?: any) => {
+              setPage(page);
+              setPageData(data);
+            }}
+            theme={theme}
+            userId="1"
+          />
+        )}
+        {page === "assignment" && (
+          <AssignmentPage
+            assignment={pageData.assignment}
+            course={pageData.course}
+            theme={theme}
+            userId="1"
+          />
+        )}
       </Stack>
     </ThemeProvider>
   );

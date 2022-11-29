@@ -9,6 +9,7 @@ import { horizontalStackTokens } from "../styles";
 type KanbanAssignmentProps = {
   assignment: ApiAssignment;
   selectedClasses: ApiClass[];
+  setPage: (page: "home" | "assignment", data?: any) => void;
   showLeft: boolean;
   showRight: boolean;
   theme: Theme;
@@ -30,7 +31,16 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
     >
       {props.showLeft && <IconButton iconProps={leftIcon} />}
       <Stack.Item grow>
-        <Stack>
+        <Stack
+          onClick={() => {
+            props.setPage("assignment", {
+              assignment: props.assignment,
+              course: props.selectedClasses.find((c) => {
+                return c.id === props.assignment.class_id;
+              }),
+            });
+          }}
+        >
           <Text>
             {
               props.selectedClasses.find((c) => {
@@ -38,9 +48,7 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
               })?.code
             }
           </Text>
-          <Link href={props.assignment.link}>
-            <Text>{props.assignment.name}</Text>
-          </Link>
+          <Text>{props.assignment.name}</Text>
         </Stack>
       </Stack.Item>
       {props.showRight && <IconButton iconProps={rightIcon} />}

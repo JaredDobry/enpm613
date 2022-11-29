@@ -9,6 +9,7 @@ import { KanbanBoard } from "../components/KanbanBoard";
 import { marginStyles, verticalStackTokens } from "../styles";
 
 type HomePageProps = {
+  setPage: (page: "home" | "assignment", data?: any) => void;
   theme: Theme;
   userId: string;
 };
@@ -63,6 +64,7 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
       <Separator />
       <KanbanBoard
         selectedClasses={selectedClasses}
+        setPage={props.setPage}
         theme={props.theme}
         userId={props.userId}
       />

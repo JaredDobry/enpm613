@@ -20,6 +20,7 @@ const getStatusLabel = (statusType: AssignmentStatusTypes) => {
 type KanbanColumnProps = {
   assignments: ApiAssignment[];
   selectedClasses: ApiClass[];
+  setPage: (page: "home" | "assignment", data?: any) => void;
   statusType: AssignmentStatusTypes;
   theme: Theme;
 };
@@ -52,6 +53,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
               assignment={value}
               key={`${props.statusType}-${value.id}`}
               selectedClasses={props.selectedClasses}
+              setPage={props.setPage}
               showLeft={props.statusType !== AssignmentStatusTypes.todo}
               showRight={props.statusType !== AssignmentStatusTypes.complete}
               theme={props.theme}

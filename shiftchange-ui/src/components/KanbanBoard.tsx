@@ -15,6 +15,7 @@ import { KanbanColumn } from "./KanbanColumn";
 
 type KanbanBoardProps = {
   selectedClasses: ApiClass[];
+  setPage: (page: "home" | "assignment", data?: any) => void;
   theme: Theme;
   userId: string;
 };
@@ -85,6 +86,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
             );
           })}
           selectedClasses={props.selectedClasses}
+          setPage={props.setPage}
           statusType={AssignmentStatusTypes.todo}
           theme={props.theme}
         />
@@ -102,6 +104,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
             );
           })}
           selectedClasses={props.selectedClasses}
+          setPage={props.setPage}
           statusType={AssignmentStatusTypes.inwork}
           theme={props.theme}
         />
@@ -119,6 +122,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
             );
           })}
           selectedClasses={props.selectedClasses}
+          setPage={props.setPage}
           statusType={AssignmentStatusTypes.complete}
           theme={props.theme}
         />
