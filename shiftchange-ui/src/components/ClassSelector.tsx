@@ -1,5 +1,7 @@
-import { Checkbox, Stack, Text } from "@fluentui/react";
 import React from "react";
+
+import { Checkbox, Stack, Text } from "@fluentui/react";
+
 import { ApiClass } from "../api";
 import { verticalStackTokens } from "../styles";
 

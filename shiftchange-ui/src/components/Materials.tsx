@@ -1,11 +1,8 @@
-import { Stack, Text, Link } from "@fluentui/react";
 import React from "react";
-import {
-  ApiClass,
-  ApiCourseMaterial,
-  CLASS_URL,
-  CLASS_MATERIALS_URL,
-} from "../api";
+
+import { Link, Stack, Text } from "@fluentui/react";
+
+import { ApiClass, ApiCourseMaterial, CLASS_MATERIALS_URL } from "../api";
 import { verticalStackTokens } from "../styles";
 
 type MaterialsProps = {

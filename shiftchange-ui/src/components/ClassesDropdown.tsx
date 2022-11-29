@@ -1,5 +1,7 @@
-import { Dropdown, IDropdownOption, Stack, Text } from "@fluentui/react";
 import React from "react";
+
+import { Dropdown, IDropdownOption, Stack, Text } from "@fluentui/react";
+
 import { ApiClass, ApiEnrollment, CLASS_URL, ENROLLMENTS_URL } from "../api";
 import { horizontalStackTokens } from "../styles";
 

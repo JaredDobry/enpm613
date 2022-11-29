@@ -1,7 +1,9 @@
-import { Separator, Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
+
+import { Separator, Stack, Text, Theme } from "@fluentui/react";
+
 import { ApiAssignment, ApiClass, AssignmentStatusTypes } from "../api";
-import { darkPalette, lightPalette, verticalStackTokens } from "../styles";
+import { verticalStackTokens } from "../styles";
 import { KanbanAssignment } from "./KanbanAssignment";
 
 const getStatusLabel = (statusType: AssignmentStatusTypes) => {

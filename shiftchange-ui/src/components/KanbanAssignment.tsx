@@ -1,8 +1,10 @@
-import { IconButton, Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
-import { ApiAssignment, ApiClass, CLASS_URL } from "../api";
+
+import { IconButton, Stack, Text, Theme } from "@fluentui/react";
+
+import { ApiAssignment, ApiClass } from "../api";
 import { leftIcon, rightIcon } from "../icons";
-import { darkPalette, horizontalStackTokens, lightPalette } from "../styles";
+import { horizontalStackTokens } from "../styles";
 
 type KanbanAssignmentProps = {
   assignment: ApiAssignment;

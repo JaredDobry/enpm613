@@ -1,3 +1,6 @@
+import React from "react";
+import { sha256 } from "sha.js";
+
 import {
   MessageBar,
   MessageBarType,
@@ -6,9 +9,8 @@ import {
   Text,
   TextField,
 } from "@fluentui/react";
-import React from "react";
+
 import { LOGIN_URL } from "../api";
-import { sha256 } from "sha.js";
 
 type LoginPageProps = {
   setToken: (token: string) => void;

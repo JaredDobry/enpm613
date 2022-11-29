@@ -1,13 +1,14 @@
-import { Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
+
+import { Stack, Text, Theme } from "@fluentui/react";
+
 import {
   ApiAssignment,
   ApiAssignmentStatus,
   ApiClass,
-  AssignmentStatusTypes,
-  ASSIGNMENTS_URL,
   ASSIGNMENT_STATUS_URL,
-  ASSIGNMENT_URL,
+  ASSIGNMENTS_URL,
+  AssignmentStatusTypes,
 } from "../api";
 import { verticalStackTokens } from "../styles";
 import { KanbanColumn } from "./KanbanColumn";

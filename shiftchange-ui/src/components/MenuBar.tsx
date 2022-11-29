@@ -1,5 +1,7 @@
-import { Callout, IconButton, Stack, Theme } from "@fluentui/react";
 import React from "react";
+
+import { Callout, IconButton, Stack, Theme } from "@fluentui/react";
+
 import { Settings, SettingsProps } from "./Settings";
 
 interface MenuBarProps extends SettingsProps {

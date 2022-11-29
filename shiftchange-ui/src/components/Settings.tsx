@@ -1,5 +1,6 @@
-import { ActionButton, Stack } from "@fluentui/react";
 import React from "react";
+
+import { ActionButton, Stack } from "@fluentui/react";
 
 export type SettingsProps = {
   darkMode: boolean;

@@ -1,6 +1,7 @@
-import { initializeIcons } from "@fluentui/react";
 import React from "react";
 import ReactDOM from "react-dom";
+
+import { initializeIcons } from "@fluentui/react";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

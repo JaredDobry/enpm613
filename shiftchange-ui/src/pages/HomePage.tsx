@@ -1,5 +1,7 @@
-import { Separator, Stack, Theme } from "@fluentui/react";
 import React from "react";
+
+import { Separator, Stack, Theme } from "@fluentui/react";
+
 import { ApiClass, ApiEnrollment, CLASS_URL, ENROLLMENTS_URL } from "../api";
 import { ClassMaterials } from "../components/ClassMaterials";
 import { ClassSelector } from "../components/ClassSelector";

@@ -1,4 +1,4 @@
-import { IStackStyles, IStackTokens, IPalette } from "@fluentui/react";
+import { IPalette, IStackStyles, IStackTokens } from "@fluentui/react";
 
 export const darkPalette: Partial<IPalette> = {
   themePrimary: "#d47e3d",

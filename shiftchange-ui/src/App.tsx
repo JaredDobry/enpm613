@@ -1,5 +1,7 @@
-import { createTheme, Stack, ThemeProvider } from "@fluentui/react";
 import React from "react";
+
+import { createTheme, Stack, ThemeProvider } from "@fluentui/react";
+
 import { MenuBar } from "./components/MenuBar";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";

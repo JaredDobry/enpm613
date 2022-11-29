@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { sha256 } from "sha.js";
+
 import {
   mockAssignments,
   mockClasses,
