@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Callout, IconButton, Stack, Theme } from "@fluentui/react";
+import {
+  ActionButton,
+  Callout,
+  IconButton,
+  Stack,
+  Theme,
+} from "@fluentui/react";
 
 import { Settings, SettingsProps } from "./Settings";
 
@@ -25,10 +31,12 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
             borderBottomWidth: 1,
           },
         }}
+        verticalAlign="center"
       >
-        <IconButton
+        <ActionButton
           iconProps={{ iconName: "Home" }}
           onClick={() => props.setPage("home")}
+          text="ShiftChange"
         />
         <Stack horizontal>
           <IconButton

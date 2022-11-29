@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IconButton, Stack, Text, Theme } from "@fluentui/react";
+import { IconButton, Link, Stack, Text, Theme } from "@fluentui/react";
 
 import { ApiAssignment, ApiClass } from "../api";
 import { leftIcon, rightIcon } from "../icons";
@@ -22,6 +22,7 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
         root: {
           border: `thin solid ${props.theme.palette.themeDark}`,
           padding: 4,
+          borderRadius: 8,
         },
       }}
       tokens={horizontalStackTokens}
@@ -37,7 +38,9 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
               })?.code
             }
           </Text>
-          <Text>{props.assignment.name}</Text>
+          <Link href={props.assignment.link}>
+            <Text>{props.assignment.name}</Text>
+          </Link>
         </Stack>
       </Stack.Item>
       {props.showRight && <IconButton iconProps={rightIcon} />}
