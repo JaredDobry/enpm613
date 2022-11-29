@@ -1,10 +1,11 @@
-import { Callout, IconButton, Stack } from "@fluentui/react";
+import { Callout, IconButton, Stack, Theme } from "@fluentui/react";
 import React from "react";
 import { Settings, SettingsProps } from "./Settings";
 
 interface MenuBarProps extends SettingsProps {
   setPage: (page: "home" | "assignment") => void;
   signOut: () => void;
+  theme: Theme;
 }
 
 export const MenuBar: React.FC<MenuBarProps> = (props) => {
@@ -12,7 +13,17 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
 
   return (
     <>
-      <Stack horizontal horizontalAlign="space-between">
+      <Stack
+        horizontal
+        horizontalAlign="space-between"
+        styles={{
+          root: {
+            borderBottomColor: props.theme.palette.neutralLight,
+            borderBottomStyle: "solid",
+            borderBottomWidth: 1,
+          },
+        }}
+      >
         <IconButton
           iconProps={{ iconName: "Home" }}
           onClick={() => props.setPage("home")}

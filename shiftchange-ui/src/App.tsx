@@ -3,19 +3,18 @@ import React from "react";
 import { MenuBar } from "./components/MenuBar";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
-import { darkPalette, lightPalette } from "./styles";
+import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
   const [page, setPage] = React.useState<string>("login");
   const [token, setToken] = React.useState<string>();
 
+  const theme = createTheme({ palette: darkMode ? darkPalette : lightPalette });
+
   return (
-    <ThemeProvider
-      applyTo="body"
-      theme={createTheme({ palette: darkMode ? darkPalette : lightPalette })}
-    >
-      <Stack>
+    <ThemeProvider applyTo="body" theme={theme}>
+      <Stack tokens={verticalStackTokens}>
         {page !== "login" && (
           <MenuBar
             darkMode={darkMode}
@@ -27,6 +26,7 @@ const App: React.FC = () => {
               setToken(undefined);
               setPage("login");
             }}
+            theme={theme}
           />
         )}
         {page === "login" && (
@@ -37,7 +37,7 @@ const App: React.FC = () => {
             }}
           />
         )}
-        {page === "home" && <HomePage darkMode={darkMode} userId="1" />}
+        {page === "home" && <HomePage theme={theme} userId="1" />}
       </Stack>
     </ThemeProvider>
   );

@@ -22,6 +22,24 @@ export const handlers = [
       );
     else return res(ctx.status(200), ctx.json(enrollments));
   }),
+  rest.get("user/:userId/assignments", (req, res, ctx) => {
+    const { userId } = req.params;
+
+    const assignments = mockAssignments.filter((assignment) => {
+      return mockEnrollments
+        .filter((value) => {
+          return value.user_id === userId;
+        })
+        .map((enrollment) => {
+          return enrollment.class_id;
+        })
+        .includes(assignment.class_id);
+    });
+
+    if (assignments.length === 0) {
+      return res(ctx.status(404, `User ${userId} has no assignments`));
+    } else return res(ctx.status(200), ctx.json(assignments));
+  }),
   rest.get("/class/:classId", (req, res, ctx) => {
     const { classId } = req.params;
 

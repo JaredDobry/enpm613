@@ -1,6 +1,6 @@
-import { Separator, Stack, Text } from "@fluentui/react";
+import { Separator, Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
-import { ApiAssignment, AssignmentStatusTypes } from "../api";
+import { ApiAssignment, ApiClass, AssignmentStatusTypes } from "../api";
 import { darkPalette, lightPalette, verticalStackTokens } from "../styles";
 import { KanbanAssignment } from "./KanbanAssignment";
 
@@ -17,8 +17,9 @@ const getStatusLabel = (statusType: AssignmentStatusTypes) => {
 
 type KanbanColumnProps = {
   assignments: ApiAssignment[];
-  darkMode: boolean;
+  selectedClasses: ApiClass[];
   statusType: AssignmentStatusTypes;
+  theme: Theme;
 };
 
 export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
@@ -27,17 +28,16 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
       styles={{
         root: {
           borderBottomWidth: 1,
-          borderColor: props.darkMode
-            ? darkPalette.themeDark
-            : lightPalette.themeDark,
+          borderColor: props.theme.palette.themeDark,
           borderLeftWidth:
             props.statusType !== AssignmentStatusTypes.inwork ? 1 : 0,
           borderRightWidth:
             props.statusType !== AssignmentStatusTypes.inwork ? 1 : 0,
           borderStyle: "solid",
           borderTopWidth: 1,
-          height: "100%",
+          minHeight: 500,
           padding: 10,
+          width: "calc(100vw - 20px)",
         },
       }}
     >
@@ -48,10 +48,11 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
           return (
             <KanbanAssignment
               assignment={value}
-              darkMode={props.darkMode}
               key={`${props.statusType}-${value.id}`}
+              selectedClasses={props.selectedClasses}
               showLeft={props.statusType !== AssignmentStatusTypes.todo}
               showRight={props.statusType !== AssignmentStatusTypes.complete}
+              theme={props.theme}
             />
           );
         })}

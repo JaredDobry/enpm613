@@ -1,4 +1,4 @@
-import { IconButton, Stack, Text } from "@fluentui/react";
+import { IconButton, Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
 import { ApiAssignment, ApiClass, CLASS_URL } from "../api";
 import { leftIcon, rightIcon } from "../icons";
@@ -6,35 +6,19 @@ import { darkPalette, horizontalStackTokens, lightPalette } from "../styles";
 
 type KanbanAssignmentProps = {
   assignment: ApiAssignment;
-  darkMode: boolean;
+  selectedClasses: ApiClass[];
   showLeft: boolean;
   showRight: boolean;
+  theme: Theme;
 };
 
 export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
-  const [classCode, setClassCode] = React.useState<string>();
-
-  React.useEffect(() => {
-    const fetchClass = async () => {
-      const response = await fetch(CLASS_URL(props.assignment.class_id));
-      if (response.ok) {
-        const data: ApiClass = await response.json();
-        setClassCode(data.code);
-      } else console.log(`Error fetching class ${props.assignment.class_id}`);
-    };
-    fetchClass();
-  }, [props.assignment]);
-
-  if (!classCode) return null;
-
   return (
     <Stack
       horizontal
       styles={{
         root: {
-          border: `thin solid ${
-            props.darkMode ? darkPalette.themeDark : lightPalette.themeDark
-          }`,
+          border: `thin solid ${props.theme.palette.themeDark}`,
           padding: 4,
         },
       }}
@@ -44,7 +28,13 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
       {props.showLeft && <IconButton iconProps={leftIcon} />}
       <Stack.Item grow>
         <Stack>
-          <Text>{classCode}</Text>
+          <Text>
+            {
+              props.selectedClasses.find((c) => {
+                return c.id === props.assignment.class_id;
+              })?.code
+            }
+          </Text>
           <Text>{props.assignment.name}</Text>
         </Stack>
       </Stack.Item>

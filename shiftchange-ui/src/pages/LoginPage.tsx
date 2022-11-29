@@ -20,7 +20,15 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
   const [username, setUsername] = React.useState<string>("");
 
   return (
-    <Stack horizontalAlign="center" verticalAlign="center">
+    <Stack
+      horizontalAlign="center"
+      styles={{
+        root: {
+          height: "100vh",
+        },
+      }}
+      verticalAlign="center"
+    >
       <Text variant="xxLargePlus">ShiftChange</Text>
 
       <Stack>

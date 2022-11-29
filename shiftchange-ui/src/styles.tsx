@@ -73,10 +73,10 @@ export const overflowStyles: IStackStyles = {
 
 export const marginStyles: IStackStyles = {
   root: {
-    marginBottom: verticalGap * 2,
-    marginLeft: horizontalGap * 2,
-    marginRight: horizontalGap * 2,
-    marginTop: verticalGap * 2,
+    marginBottom: verticalGap,
+    marginLeft: horizontalGap,
+    marginRight: horizontalGap,
+    marginTop: verticalGap,
   },
 };
 
