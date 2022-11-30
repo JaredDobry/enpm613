@@ -23,6 +23,10 @@ type KanbanColumnProps = {
   setPage: (page: "home" | "assignment", data?: any) => void;
   statusType: AssignmentStatusTypes;
   theme: Theme;
+  updateStatus: (
+    assignment: ApiAssignment,
+    newStatus: AssignmentStatusTypes
+  ) => void;
 };
 
 export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
@@ -52,6 +56,22 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
             <KanbanAssignment
               assignment={value}
               key={`${props.statusType}-${value.id}`}
+              onLeft={() => {
+                props.updateStatus(
+                  value,
+                  props.statusType === AssignmentStatusTypes.inwork
+                    ? AssignmentStatusTypes.todo
+                    : AssignmentStatusTypes.inwork
+                );
+              }}
+              onRight={() => {
+                props.updateStatus(
+                  value,
+                  props.statusType === AssignmentStatusTypes.inwork
+                    ? AssignmentStatusTypes.complete
+                    : AssignmentStatusTypes.inwork
+                );
+              }}
               selectedClasses={props.selectedClasses}
               setPage={props.setPage}
               showLeft={props.statusType !== AssignmentStatusTypes.todo}

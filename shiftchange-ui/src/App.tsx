@@ -49,6 +49,7 @@ const App: React.FC = () => {
               setPageData(data);
             }}
             theme={theme}
+            token={token}
             userId="1"
           />
         )}

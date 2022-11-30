@@ -11,6 +11,7 @@ import { marginStyles, verticalStackTokens } from "../styles";
 type HomePageProps = {
   setPage: (page: "home" | "assignment", data?: any) => void;
   theme: Theme;
+  token: string;
   userId: string;
 };
 
@@ -66,6 +67,7 @@ export const HomePage: React.FC<HomePageProps> = (props) => {
         selectedClasses={selectedClasses}
         setPage={props.setPage}
         theme={props.theme}
+        token={props.token}
         userId={props.userId}
       />
       <Separator />

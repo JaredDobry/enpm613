@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IconButton, Link, Stack, Text, Theme } from "@fluentui/react";
+import { IconButton, Stack, Text, Theme } from "@fluentui/react";
 
 import { ApiAssignment, ApiClass } from "../api";
 import { leftIcon, rightIcon } from "../icons";
@@ -8,6 +8,8 @@ import { horizontalStackTokens } from "../styles";
 
 type KanbanAssignmentProps = {
   assignment: ApiAssignment;
+  onLeft: () => void;
+  onRight: () => void;
   selectedClasses: ApiClass[];
   setPage: (page: "home" | "assignment", data?: any) => void;
   showLeft: boolean;
@@ -29,7 +31,9 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
       tokens={horizontalStackTokens}
       verticalAlign="center"
     >
-      {props.showLeft && <IconButton iconProps={leftIcon} />}
+      {props.showLeft && (
+        <IconButton iconProps={leftIcon} onClick={props.onLeft} />
+      )}
       <Stack.Item grow>
         <Stack
           onClick={() => {
@@ -51,7 +55,9 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
           <Text>{props.assignment.name}</Text>
         </Stack>
       </Stack.Item>
-      {props.showRight && <IconButton iconProps={rightIcon} />}
+      {props.showRight && (
+        <IconButton iconProps={rightIcon} onClick={props.onRight} />
+      )}
     </Stack>
   );
 };

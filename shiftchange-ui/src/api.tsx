@@ -1,6 +1,7 @@
 export const BASE_URL = "";
 export const LOGIN_URL = `${BASE_URL}/login`;
 export const COMMENT_URL = `${BASE_URL}/comment`;
+export const STATUS_URL = `${BASE_URL}/status`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -130,4 +131,8 @@ export type ApiLoginPost = {
 
 export type ApiCommentPost = {
   comment: ApiComment;
+} & ApiAuthenticatedPost;
+
+export type ApiStatusPost = {
+  status: ApiAssignmentStatus;
 } & ApiAuthenticatedPost;

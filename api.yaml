@@ -427,6 +427,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /status:
+    post:
+      description: "Update the status of an assignment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StatusPost"
+    responses:
+      200:
+        description: "Successfully updated status"
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -629,3 +653,12 @@ components:
           properties:
             comment:
               $ref: "#/components/schemas/Comment"
+    StatusPost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - status
+          properties:
+            status:
+              $ref: "#/components/schemas/Status"
