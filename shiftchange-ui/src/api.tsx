@@ -41,6 +41,10 @@ export const ASSIGNMENTS_URL = (id: string, type: "user" | "class") => {
   else return `${CLASS_URL(id)}/assignments`;
 };
 
+export type ApiAuthenticatedPost = {
+  token: string;
+};
+
 export type ApiError = {
   message: string;
 };
@@ -118,3 +122,12 @@ export type ApiComment = {
   text: string;
   timestamp: string;
 };
+
+export type ApiLoginPost = {
+  username: string;
+  password: string;
+};
+
+export type ApiCommentPost = {
+  comment: ApiComment;
+} & ApiAuthenticatedPost;

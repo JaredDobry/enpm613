@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { sha256 } from "sha.js";
-import { ApiComment } from "../api";
+import { ApiCommentPost, ApiLoginPost } from "../api";
 
 import {
   mockAssignments,
@@ -160,17 +160,26 @@ export const handlers = [
     else return res(ctx.status(200), ctx.json(subs));
   }),
   rest.post("/login", async (req, res, ctx) => {
-    const encrypted = await req.json();
+    const login: ApiLoginPost = await req.json();
 
     const fail = new sha256().update("fail").digest("hex");
-    if (encrypted === fail) return res(ctx.status(500, "Login failed"));
-    else return res(ctx.status(200), ctx.json(fail));
+    if (login.username === fail) return res(ctx.status(500, "Login failed"));
+    else
+      return res(
+        ctx.status(200),
+        ctx.json(
+          new sha256()
+            .update(login.username)
+            .update(login.password)
+            .digest("hex")
+        )
+      );
   }),
   rest.post("/comment", async (req, res, ctx) => {
-    const comment: ApiComment = await req.json();
-    console.log(comment.text);
+    const comment: ApiCommentPost = await req.json();
+    console.log(comment.comment.text);
 
-    if (comment.text === "fail")
+    if (comment.comment.text === "fail")
       return res(ctx.status(500, "Failure uploading comment"));
     else
       return res(

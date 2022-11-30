@@ -10,6 +10,7 @@ import React from "react";
 import {
   ApiAssignment,
   ApiComment,
+  ApiCommentPost,
   ApiUser,
   ASSIGNMENT_COMMENTS_URL,
   COMMENT_URL,
@@ -19,6 +20,7 @@ import { horizontalStackTokens, verticalStackTokens } from "../styles";
 
 type CommentsProps = {
   assignment: ApiAssignment;
+  token: string;
   userId: string;
 };
 
@@ -111,8 +113,12 @@ export const Comments: React.FC<CommentsProps> = (props) => {
                 text: comment,
                 timestamp: `${new Date().toLocaleString()}`,
               };
+              const post: ApiCommentPost = {
+                token: "",
+                comment: apiComment,
+              };
               const response = await fetch(COMMENT_URL, {
-                body: JSON.stringify(apiComment),
+                body: JSON.stringify(post),
                 headers: { "Content-Type": "application/json" },
                 method: "POST",
               });

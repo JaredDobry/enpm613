@@ -42,7 +42,7 @@ const App: React.FC = () => {
             }}
           />
         )}
-        {page === "home" && (
+        {page === "home" && token && (
           <HomePage
             setPage={(page: "home" | "assignment", data?: any) => {
               setPage(page);
@@ -52,11 +52,12 @@ const App: React.FC = () => {
             userId="1"
           />
         )}
-        {page === "assignment" && (
+        {page === "assignment" && token && (
           <AssignmentPage
             assignment={pageData.assignment}
             course={pageData.course}
             theme={theme}
+            token={token}
             userId="1"
           />
         )}

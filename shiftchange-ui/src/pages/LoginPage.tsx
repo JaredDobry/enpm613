@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@fluentui/react";
 
-import { LOGIN_URL } from "../api";
+import { ApiLoginPost, LOGIN_URL } from "../api";
 
 type LoginPageProps = {
   setToken: (token: string) => void;
@@ -53,11 +53,13 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
         <Stack horizontal horizontalAlign="end">
           <PrimaryButton
             onClick={async () => {
-              const encrypted = new sha256()
-                .update(username + password)
-                .digest("hex");
+              const encrypted = new sha256().update(password).digest("hex");
+              const post: ApiLoginPost = {
+                username: username,
+                password: encrypted,
+              };
               const response = await fetch(LOGIN_URL, {
-                body: JSON.stringify(encrypted),
+                body: JSON.stringify(post),
                 headers: { "Content-Type": "application/json" },
                 method: "POST",
               });

@@ -19,6 +19,7 @@ type AssignmentPageProps = {
   assignment: ApiAssignment;
   course: ApiClass;
   theme: Theme;
+  token: string;
   userId: string;
 };
 
@@ -59,7 +60,11 @@ export const AssignmentPage: React.FC<AssignmentPageProps> = (props) => {
           )}
           <FilePreview link={props.assignment.link} theme={props.theme} />
           <Separator />
-          <Comments assignment={props.assignment} userId={props.userId} />
+          <Comments
+            assignment={props.assignment}
+            token={props.token}
+            userId={props.userId}
+          />
         </Stack>
       </Stack.Item>
       <Separator vertical />

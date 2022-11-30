@@ -375,6 +375,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /login:
+    post:
+      description: "Log into ShiftChange"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginPost"
+      responses:
+        200:
+          description: "Successful login request"
+          content:
+            application/json:
+              schema:
+                description: Login session token
+                type: string
+        401:
+          description: "Failed to login"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /comment:
+    post:
+      description: "Post a comment to an assignment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentPost"
+    responses:
+      200:
+        description: "Successfully added comment"
+        content:
+          application/json:
+            schema:
+              description: The unique ID of the added comment
+              type: number
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -550,3 +602,30 @@ components:
       properties:
         message:
           type: string
+    LoginPost:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          description: SHA-256 hash of password
+          type: string
+    AuthenticatedPost:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+    CommentPost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - comment
+          properties:
+            comment:
+              $ref: "#/components/schemas/Comment"
