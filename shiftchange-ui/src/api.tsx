@@ -1,5 +1,6 @@
 export const BASE_URL = "";
 export const LOGIN_URL = `${BASE_URL}/login`;
+export const COMMENT_URL = `${BASE_URL}/comment`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -31,6 +32,9 @@ export const ASSIGNMENT_COMMENTS_URL = (
   studentId: string
 ) => {
   return `${ASSIGNMENT_URL(assignmentId)}/comments/${studentId}`;
+};
+export const ASSIGNMENT_GRADE_URL = (assignmentId: string, userId: string) => {
+  return `${ASSIGNMENT_URL(assignmentId)}/grade/${userId}`;
 };
 export const ASSIGNMENTS_URL = (id: string, type: "user" | "class") => {
   if (type === "user") return `${USER_URL(id)}/assignments`;
@@ -95,6 +99,7 @@ export type ApiAssignmentStatus = {
 export type ApiSubmission = {
   id: string;
   assignment_id: string;
+  user_id: string;
   link: string;
   timestamp: string;
 };

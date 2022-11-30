@@ -1,10 +1,18 @@
-import { PrimaryButton, Stack, Text, TextField } from "@fluentui/react";
+import {
+  MessageBar,
+  MessageBarType,
+  PrimaryButton,
+  Stack,
+  Text,
+  TextField,
+} from "@fluentui/react";
 import React from "react";
 import {
   ApiAssignment,
   ApiComment,
   ApiUser,
   ASSIGNMENT_COMMENTS_URL,
+  COMMENT_URL,
   USER_URL,
 } from "../api";
 import { horizontalStackTokens, verticalStackTokens } from "../styles";
@@ -18,6 +26,7 @@ export const Comments: React.FC<CommentsProps> = (props) => {
   const [commenters, setCommenters] = React.useState<ApiUser[]>([]);
   const [comments, setComments] = React.useState<ApiComment[]>([]);
   const [comment, setComment] = React.useState<string>("");
+  const [error, setError] = React.useState<string>();
 
   React.useEffect(() => {
     const fetchComments = async () => {
@@ -91,8 +100,43 @@ export const Comments: React.FC<CommentsProps> = (props) => {
         value={comment}
       />
       <Stack horizontal horizontalAlign="end">
-        <PrimaryButton text="Comment" />
+        <PrimaryButton
+          onClick={async () => {
+            if (comment) {
+              let apiComment: ApiComment = {
+                id: "",
+                assignment_id: props.assignment.id,
+                author_id: props.userId,
+                student_id: props.userId,
+                text: comment,
+                timestamp: `${new Date().toLocaleString()}`,
+              };
+              const response = await fetch(COMMENT_URL, {
+                body: JSON.stringify(apiComment),
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+              });
+              if (response.ok) {
+                apiComment.id = await response.json();
+                setComments((old) => [...old, apiComment]);
+                setComment("");
+              } else {
+                setError("Failed to make a new comment");
+                console.log("Error");
+              }
+            }
+          }}
+          text="Comment"
+        />
       </Stack>
+      {error && (
+        <MessageBar
+          messageBarType={MessageBarType.error}
+          onDismiss={() => setError(undefined)}
+        >
+          {error}
+        </MessageBar>
+      )}
     </Stack>
   );
 };

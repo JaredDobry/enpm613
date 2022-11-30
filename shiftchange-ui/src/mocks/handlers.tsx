@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { sha256 } from "sha.js";
+import { ApiComment } from "../api";
 
 import {
   mockAssignments,
@@ -7,7 +8,9 @@ import {
   mockComments,
   mockCourseMaterial,
   mockEnrollments,
+  mockGrades,
   mockStatuses,
+  mockSubmissions,
   mockUsers,
 } from "./mockResponses";
 
@@ -124,12 +127,56 @@ export const handlers = [
       );
     else return res(ctx.status(200), ctx.json(comments));
   }),
+  rest.get("/assignment/:assignmentId/grade/:userId", (req, res, ctx) => {
+    const { assignmentId, userId } = req.params;
+
+    const grade = mockGrades.find((g) => {
+      return g.assignment_id === assignmentId && g.user_id === userId;
+    });
+
+    if (!grade)
+      return res(
+        ctx.status(
+          404,
+          `Student ${userId} has no grade on assignment ${assignmentId}`
+        )
+      );
+    else return res(ctx.status(200), ctx.json(grade));
+  }),
+  rest.get("/assignment/:assignmentId/submissions/:userId", (req, res, ctx) => {
+    const { assignmentId, userId } = req.params;
+
+    const subs = mockSubmissions.filter((s) => {
+      return s.assignment_id === assignmentId && s.user_id === userId;
+    });
+
+    if (subs.length === 0)
+      return res(
+        ctx.status(
+          404,
+          `Student ${userId} has no submissions on assignment ${assignmentId}`
+        )
+      );
+    else return res(ctx.status(200), ctx.json(subs));
+  }),
   rest.post("/login", async (req, res, ctx) => {
     const encrypted = await req.json();
 
     const fail = new sha256().update("fail").digest("hex");
     if (encrypted === fail) return res(ctx.status(500, "Login failed"));
     else return res(ctx.status(200), ctx.json(fail));
+  }),
+  rest.post("/comment", async (req, res, ctx) => {
+    const comment: ApiComment = await req.json();
+    console.log(comment.text);
+
+    if (comment.text === "fail")
+      return res(ctx.status(500, "Failure uploading comment"));
+    else
+      return res(
+        ctx.status(200),
+        ctx.json(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER))
+      );
   }),
 ];
 

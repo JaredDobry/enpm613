@@ -5,10 +5,14 @@ import {
   ApiComment,
   ApiCourseMaterial,
   ApiEnrollment,
+  ApiGrade,
+  ApiSubmission,
   ApiUser,
   AssignmentStatusTypes,
   EnrollmentTypes,
 } from "../api";
+
+import doc from "../resources/doc.docx";
 
 export const mockUsers: ApiUser[] = [
   {
@@ -103,25 +107,25 @@ export const mockCourseMaterial: ApiCourseMaterial[] = [
   {
     id: "0",
     class_id: "2",
-    link: "www.google.com",
+    link: doc,
     name: "Lecture 1",
   },
   {
     id: "1",
     class_id: "2",
-    link: "www.google.com",
+    link: doc,
     name: "Lecture 2",
   },
   {
     id: "2",
     class_id: "2",
-    link: "www.google.com",
+    link: doc,
     name: "Lecture 3",
   },
   {
     id: "3",
     class_id: "2",
-    link: "www.google.com",
+    link: doc,
     name: "Lecture 4",
   },
 ];
@@ -131,37 +135,37 @@ export const mockAssignments: ApiAssignment[] = [
     id: "0",
     class_id: "2",
     name: "Preliminary architecture decisions",
-    link: "www.google.com",
+    link: doc,
   },
   {
     id: "1",
     class_id: "2",
     name: "Architecture styles and tactics",
-    link: "www.google.com",
+    link: doc,
   },
   {
     id: "2",
     class_id: "2",
     name: "Architecture Views",
-    link: "www.google.com",
+    link: doc,
   },
   {
     id: "3",
     class_id: "2",
     name: "Software architecture document",
-    link: "www.google.com",
+    link: doc,
   },
   {
     id: "4",
     class_id: "2",
     name: "Detailed design exercise",
-    link: "www.google.com",
+    link: doc,
   },
   {
     id: "5",
     class_id: "2",
     name: "Software architecture and detailed design",
-    link: "www.google.com",
+    link: doc,
   },
 ];
 
@@ -252,5 +256,23 @@ export const mockComments: ApiComment[] = [
     student_id: "1",
     text: "Alright, will do.",
     timestamp: "2022-11-30 14:30",
+  },
+];
+
+export const mockSubmissions: ApiSubmission[] = [
+  {
+    id: "0",
+    assignment_id: "0",
+    user_id: "1",
+    link: doc,
+    timestamp: "2022-11-31 10:31",
+  },
+];
+
+export const mockGrades: ApiGrade[] = [
+  {
+    assignment_id: "0",
+    user_id: "1",
+    grade: 89.7,
   },
 ];
