@@ -445,8 +445,8 @@ components:
       required:
         - id
         - class_id
-        - name
         - link
+        - name 
       properties:
         id:
           type: string
@@ -454,9 +454,11 @@ components:
         class_id:
           type: string
           format: uuid
-        name:
+        description:
           type: string
         link:
+          type: string
+        name:
           type: string
     AssignmentStatus:
       type: object

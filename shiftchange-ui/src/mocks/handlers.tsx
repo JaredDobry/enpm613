@@ -4,12 +4,24 @@ import { sha256 } from "sha.js";
 import {
   mockAssignments,
   mockClasses,
+  mockComments,
   mockCourseMaterial,
   mockEnrollments,
   mockStatuses,
+  mockUsers,
 } from "./mockResponses";
 
 export const handlers = [
+  rest.get("/user/:userId", (req, res, ctx) => {
+    const { userId } = req.params;
+
+    const user = mockUsers.find((user) => {
+      return user.id === userId;
+    });
+
+    if (!user) return res(ctx.status(404, `User ${userId} not found`));
+    else return res(ctx.status(200), ctx.json(user));
+  }),
   rest.get("/user/:userId/enrollments", (req, res, ctx) => {
     const { userId } = req.params;
 
@@ -93,6 +105,24 @@ export const handlers = [
         )
       );
     else return res(ctx.status(200), ctx.json(theStatus));
+  }),
+  rest.get("/assignment/:assignmentId/comments/:studentId", (req, res, ctx) => {
+    const { assignmentId, studentId } = req.params;
+    const comments = mockComments.filter((comment) => {
+      return (
+        comment.assignment_id === assignmentId &&
+        comment.student_id === studentId
+      );
+    });
+
+    if (comments.length === 0)
+      return res(
+        ctx.status(
+          404,
+          `Student ${studentId} has no associated comments on assignment ${assignmentId}`
+        )
+      );
+    else return res(ctx.status(200), ctx.json(comments));
   }),
   rest.post("/login", async (req, res, ctx) => {
     const encrypted = await req.json();

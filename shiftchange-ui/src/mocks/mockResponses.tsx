@@ -2,6 +2,7 @@ import {
   ApiAssignment,
   ApiAssignmentStatus,
   ApiClass,
+  ApiComment,
   ApiCourseMaterial,
   ApiEnrollment,
   ApiUser,
@@ -224,5 +225,32 @@ export const mockStatuses: ApiAssignmentStatus[] = [
     assignment_id: "5",
     user_id: "1",
     status: AssignmentStatusTypes.todo,
+  },
+];
+
+export const mockComments: ApiComment[] = [
+  {
+    id: "0",
+    assignment_id: "0",
+    author_id: "1",
+    student_id: "1",
+    text: "Hello professor, can you provide some additional information about the submission guidelines?",
+    timestamp: "2022-11-30 14:00",
+  },
+  {
+    id: "1",
+    assignment_id: "0",
+    author_id: "4",
+    student_id: "1",
+    text: "Please post the question in a discussion board so when I respond all students can see it.",
+    timestamp: "2022-11-30 14:15",
+  },
+  {
+    id: "2",
+    assignment_id: "0",
+    author_id: "1",
+    student_id: "1",
+    text: "Alright, will do.",
+    timestamp: "2022-11-30 14:30",
   },
 ];

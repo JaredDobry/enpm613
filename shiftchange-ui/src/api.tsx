@@ -75,8 +75,9 @@ export type ApiCourseMaterial = {
 export type ApiAssignment = {
   id: string;
   class_id: string;
-  name: string;
+  description?: string;
   link: string;
+  name: string;
 };
 
 export enum AssignmentStatusTypes {
