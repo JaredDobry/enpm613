@@ -1,6 +1,8 @@
-import { IconButton, Stack, Text, Theme } from "@fluentui/react";
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
 import React from "react";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
+
+import { IconButton, Stack, Text, Theme } from "@fluentui/react";
+
 import { horizontalStackTokens, verticalStackTokens } from "../styles";
 
 type FilePreviewProps = {

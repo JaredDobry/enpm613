@@ -1,12 +1,12 @@
 import { rest } from "msw";
 import { sha256 } from "sha.js";
+
 import {
   ApiCommentPost,
   ApiLoginPost,
   ApiStatusPost,
   ApiSubmissionPost,
 } from "../api";
-
 import {
   mockAssignments,
   mockClasses,

@@ -11,7 +11,6 @@ import {
   AssignmentStatusTypes,
   EnrollmentTypes,
 } from "../api";
-
 import doc from "../resources/doc.docx";
 import pdf from "../resources/Lorem_ipsum.pdf";
 

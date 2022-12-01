@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   MessageBar,
   MessageBarType,
@@ -6,7 +8,7 @@ import {
   Text,
   TextField,
 } from "@fluentui/react";
-import React from "react";
+
 import {
   ApiAssignment,
   ApiComment,

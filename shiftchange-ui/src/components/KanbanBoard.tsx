@@ -12,11 +12,11 @@ import {
   ApiAssignment,
   ApiAssignmentStatus,
   ApiClass,
+  ApiStatusPost,
   ASSIGNMENT_STATUS_URL,
   ASSIGNMENTS_URL,
   AssignmentStatusTypes,
   STATUS_URL,
-  ApiStatusPost,
 } from "../api";
 import { verticalStackTokens } from "../styles";
 import { KanbanColumn } from "./KanbanColumn";
