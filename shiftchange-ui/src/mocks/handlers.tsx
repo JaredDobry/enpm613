@@ -1,6 +1,11 @@
 import { rest } from "msw";
 import { sha256 } from "sha.js";
-import { ApiCommentPost, ApiLoginPost, ApiStatusPost } from "../api";
+import {
+  ApiCommentPost,
+  ApiLoginPost,
+  ApiStatusPost,
+  ApiSubmissionPost,
+} from "../api";
 
 import {
   mockAssignments,
@@ -183,7 +188,7 @@ export const handlers = [
     else
       return res(
         ctx.status(200),
-        ctx.json(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER))
+        ctx.json(`${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`)
       );
   }),
   rest.post("/status", async (req, res, ctx) => {
@@ -192,5 +197,16 @@ export const handlers = [
     if (status.status.assignment_id === "5")
       return res(ctx.status(500, "Failure updating status"));
     else return res(ctx.status(200));
+  }),
+  rest.post("submission", async (req, res, ctx) => {
+    const submission: ApiSubmissionPost = await req.json();
+
+    if (submission.submission.name === "fail")
+      return res(ctx.status(500, "Failed to upload submission"));
+    else
+      return res(
+        ctx.status(200),
+        ctx.json(`${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`)
+      );
   }),
 ];

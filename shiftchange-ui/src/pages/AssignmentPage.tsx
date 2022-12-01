@@ -69,7 +69,11 @@ export const AssignmentPage: React.FC<AssignmentPageProps> = (props) => {
       </Stack.Item>
       <Separator vertical />
       <Stack.Item styles={{ root: { minWidth: 400 } }}>
-        <Submissions assignment={props.assignment} userId={props.userId} />
+        <Submissions
+          assignment={props.assignment}
+          token={props.token}
+          userId={props.userId}
+        />
       </Stack.Item>
     </Stack>
   );

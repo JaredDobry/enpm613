@@ -2,6 +2,7 @@ export const BASE_URL = "";
 export const LOGIN_URL = `${BASE_URL}/login`;
 export const COMMENT_URL = `${BASE_URL}/comment`;
 export const STATUS_URL = `${BASE_URL}/status`;
+export const SUBMISSION_URL = `${BASE_URL}/submission`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -106,6 +107,7 @@ export type ApiSubmission = {
   assignment_id: string;
   user_id: string;
   link: string;
+  name: string;
   timestamp: string;
 };
 
@@ -135,4 +137,9 @@ export type ApiCommentPost = {
 
 export type ApiStatusPost = {
   status: ApiAssignmentStatus;
+} & ApiAuthenticatedPost;
+
+export type ApiSubmissionPost = {
+  blob: string;
+  submission: ApiSubmission;
 } & ApiAuthenticatedPost;

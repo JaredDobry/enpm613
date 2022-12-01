@@ -10,6 +10,7 @@ import { SubmissionSelector } from "./SubmissionSelector";
 
 type SubmissionsProps = {
   assignment: ApiAssignment;
+  token: string;
   userId: string;
 };
 
@@ -33,19 +34,32 @@ export const Submissions: React.FC<SubmissionsProps> = (props) => {
     fetchSubmissions();
   }, [props.assignment, props.userId]);
 
+  const addSubmission = React.useCallback((submission: ApiSubmission) => {
+    setSubmissions((old) => [...old, submission]);
+  }, []);
+
   return (
     <Stack tokens={verticalStackTokens}>
       <Text variant="xxLargePlus">Submissions</Text>
       {submissions.map((submission, idx) => {
         return (
           <Link href={submission.link} key={`submission-${submission.id}`}>
-            <Text variant="large">
-              #{idx + 1} - {submission.timestamp}
-            </Text>
+            <Stack>
+              <Text variant="large">
+                #{idx + 1} - {submission.timestamp}
+              </Text>
+              <Text variant="large">{submission.name}</Text>
+            </Stack>
           </Link>
         );
       })}
-      <SubmissionSelector />
+      <SubmissionSelector
+        addSubmission={addSubmission}
+        assignment={props.assignment}
+        submissions={submissions}
+        token={props.token}
+        userId={props.userId}
+      />
     </Stack>
   );
 };

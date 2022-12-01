@@ -414,7 +414,7 @@ paths:
           application/json:
             schema:
               description: The unique ID of the added comment
-              type: number
+              type: string
       401:
         description: "Unauthorized POST attempt"
         content:
@@ -439,6 +439,35 @@ paths:
     responses:
       200:
         description: "Successfully updated status"
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /submission:
+    post:
+      description: "Upload a submission for an assignment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubmissionPost"
+    responses:
+      200:
+        description: "Successfully uploaded submission"
+        content:
+          application/json:
+            schema:
+              description: "The unique ID of the new submission"
+              type: string
       401:
         description: "Unauthorized POST attempt"
         content:
@@ -560,6 +589,7 @@ components:
         - id
         - assignment_id
         - link
+        - name
         - timestamp
       properties:
         id:
@@ -572,6 +602,8 @@ components:
           type: string
           format: uuid
         link:
+          type: string
+        name:
           type: string
         timestamp:
           type: string
@@ -662,3 +694,16 @@ components:
           properties:
             status:
               $ref: "#/components/schemas/Status"
+    SubmissionPost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - blob
+            - submission
+          properties:
+            blob:
+              description: The contents of the file read from javascript's Blob.text()
+              type: string
+            submission:
+              $ref: "#/components/schemas/Submission"
