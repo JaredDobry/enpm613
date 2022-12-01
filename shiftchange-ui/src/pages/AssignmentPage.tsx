@@ -1,4 +1,4 @@
-import { Separator, Stack, Text, Theme } from "@fluentui/react";
+import { IconButton, Separator, Stack, Text, Theme } from "@fluentui/react";
 import React from "react";
 import {
   ApiAssignment,
@@ -48,7 +48,17 @@ export const AssignmentPage: React.FC<AssignmentPageProps> = (props) => {
       <Stack.Item grow>
         <Stack tokens={verticalStackTokens}>
           <Stack horizontal horizontalAlign="space-between">
-            <Text variant="xxLargePlus">{props.assignment.name}</Text>
+            <Stack
+              horizontal
+              tokens={horizontalStackTokens}
+              verticalAlign="end"
+            >
+              <Text variant="xxLargePlus">{props.assignment.name}</Text>
+              <IconButton
+                iconProps={{ iconName: "Download" }}
+                onClick={() => window.open(props.assignment.link)}
+              />
+            </Stack>
             <Text variant="xxLargePlus">{`Grade: ${
               grade ? grade.grade + "%" : "Ungraded"
             }`}</Text>
