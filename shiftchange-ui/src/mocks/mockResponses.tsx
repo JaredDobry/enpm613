@@ -13,6 +13,7 @@ import {
 } from "../api";
 
 import doc from "../resources/doc.docx";
+import pdf from "../resources/Lorem_ipsum.pdf";
 
 export const mockUsers: ApiUser[] = [
   {
@@ -137,7 +138,7 @@ export const mockAssignments: ApiAssignment[] = [
     description:
       "TEAM SUBMISSION (Not graded, but mandatory) - only one member of each team needs to submit on behalf of the team. Submit an MS Word or pdf file, containing major architecture decisions and a sketch of your system's preliminary architecture, including: System name and description– a high-level, brief description of your system. Features list and description– the list of features that will be implemented. This can be the list of high priority features in your Requirements Analysis documentation, or a refined/updated version of it, if/as needed. Keep in mind that you will need to design your software, implement it, and test it, so that it realizes these features. Preliminary, major architectural design decisions. Include a simple trade-off analysis for candidate technologies (toolkits, frameworks, APIs, DBMS, etc.) – see template and example discussed in class. List the technologies selected as a result of your trade-off analysis and document your decisions. Include advantage and disadvantages of the selected technologies to your specific product/project. For the risks you identify for each of your selected technology/tools, develop mitigations, and document them in the “Project Management” workbook (“Risk Management” worksheet). Identify major architectural elements and their relations– documented in diagrams, using a notation and tool of your choice (e.g., PowerPoint, Visio, a UML tool, etc.) and textual description of responsibilities for each architectural element.",
     name: "Preliminary architecture decisions",
-    link: doc,
+    link: pdf,
   },
   {
     id: "1",
