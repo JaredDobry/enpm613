@@ -43,7 +43,11 @@ export const Submissions: React.FC<SubmissionsProps> = (props) => {
       <Text variant="xxLargePlus">Submissions</Text>
       {submissions.map((submission, idx) => {
         return (
-          <Link href={submission.link} key={`submission-${submission.id}`}>
+          <Link
+            href={submission.link}
+            key={`submission-${submission.id}`}
+            onClick={() => window.open(submission.link)}
+          >
             <Stack>
               <Text variant="large">
                 #{idx + 1} - {submission.timestamp}

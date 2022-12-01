@@ -32,7 +32,11 @@ export const Materials: React.FC<MaterialsProps> = (props) => {
       </Text>
       {materials.map((value) => {
         return (
-          <Link href={value.link} key={`material-${value.id}`}>
+          <Link
+            href={value.link}
+            key={`material-${value.id}`}
+            onClick={() => window.open(value.link)}
+          >
             <Text variant="large">{value.name}</Text>
           </Link>
         );
