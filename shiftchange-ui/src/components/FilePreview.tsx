@@ -1,6 +1,7 @@
-import { Stack, Text, Theme } from "@fluentui/react";
+import { IconButton, Stack, Text, Theme } from "@fluentui/react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
 import React from "react";
+import { horizontalStackTokens, verticalStackTokens } from "../styles";
 
 type FilePreviewProps = {
   link: string;
@@ -8,22 +9,53 @@ type FilePreviewProps = {
 };
 
 export const FilePreview: React.FC<FilePreviewProps> = (props) => {
-  const [numPages, setNumPages] = React.useState<number>();
-  const [pageNumber, setPageNumber] = React.useState<number>(1);
-
-  console.log(props.link.includes(".pdf"));
+  const [numPages, setNumPages] = React.useState<number>(1);
+  const [page, setPage] = React.useState<number>(1);
 
   return (
     <>
       {props.link.includes(".pdf") && (
-        <Stack horizontalAlign="center" verticalAlign="center" verticalFill>
-          <Document file={props.link}>
+        <Stack
+          horizontalAlign="center"
+          tokens={verticalStackTokens}
+          verticalAlign="center"
+          verticalFill
+        >
+          <Document
+            file={props.link}
+            onLoadSuccess={(pdf) => {
+              setNumPages(pdf.numPages);
+            }}
+          >
             <Page
-              pageNumber={pageNumber}
+              pageNumber={1}
               renderAnnotationLayer={false}
               renderTextLayer={false}
             />
           </Document>
+          <Stack
+            horizontal
+            tokens={horizontalStackTokens}
+            verticalAlign="center"
+          >
+            <IconButton
+              disabled={page === 1}
+              iconProps={{ iconName: "ChevronLeft" }}
+              onClick={() => {
+                setPage((old) => old - 1);
+              }}
+            />
+            <Text>
+              Page {page} of {numPages}
+            </Text>
+            <IconButton
+              disabled={page === numPages}
+              iconProps={{ iconName: "ChevronRight" }}
+              onClick={() => {
+                setPage((old) => old + 1);
+              }}
+            />
+          </Stack>
         </Stack>
       )}
       {!props.link.includes(".pdf") && (
