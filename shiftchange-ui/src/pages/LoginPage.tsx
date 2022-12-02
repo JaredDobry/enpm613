@@ -32,7 +32,6 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
       verticalAlign="center"
     >
       <Text variant="xxLargePlus">ShiftChange</Text>
-
       <Stack>
         <TextField
           ariaLabel="Login username"
@@ -52,6 +51,7 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
         />
         <Stack horizontal horizontalAlign="end">
           <PrimaryButton
+            ariaLabel="Login"
             onClick={async () => {
               const encrypted = new sha256().update(password).digest("hex");
               const post: ApiLoginPost = {

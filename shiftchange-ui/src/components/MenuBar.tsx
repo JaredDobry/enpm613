@@ -34,16 +34,19 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
         verticalAlign="center"
       >
         <ActionButton
+          ariaLabel="Go to home page"
           iconProps={{ iconName: "Home" }}
           onClick={() => props.setPage("home")}
           text="ShiftChange"
         />
         <Stack horizontal>
           <IconButton
+            ariaLabel="Sign out"
             iconProps={{ iconName: "SignOut" }}
             onClick={props.signOut}
           />
           <IconButton
+            ariaLabel="Open settings menu"
             iconProps={{ iconName: "Settings" }}
             id={"settingsButton"}
             onClick={() => setShowSettings(true)}

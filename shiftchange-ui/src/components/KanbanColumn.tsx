@@ -76,6 +76,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = (props) => {
               setPage={props.setPage}
               showLeft={props.statusType !== AssignmentStatusTypes.todo}
               showRight={props.statusType !== AssignmentStatusTypes.complete}
+              statusType={props.statusType}
               theme={props.theme}
             />
           );

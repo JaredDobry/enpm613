@@ -166,9 +166,7 @@ export const handlers = [
   }),
   rest.post("/login", async (req, res, ctx) => {
     const login: ApiLoginPost = await req.json();
-
-    const fail = new sha256().update("fail").digest("hex");
-    if (login.username === fail) return res(ctx.status(500, "Login failed"));
+    if (login.username === "fail") return res(ctx.status(500, "Login failed"));
     else
       return res(
         ctx.status(200),

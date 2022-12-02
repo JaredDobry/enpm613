@@ -32,6 +32,7 @@ export const SubmissionSelector: React.FC<SubmissionSelectorProps> = (
     <>
       <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
         <input
+          aria-label="Select a file to submit"
           onChange={(event) => {
             if (event.target.files && event.target.files.length >= 1)
               setFile(event.target.files[0]);
@@ -39,6 +40,7 @@ export const SubmissionSelector: React.FC<SubmissionSelectorProps> = (
           type="file"
         />
         <PrimaryButton
+          ariaLabel="Upload submission"
           onClick={async () => {
             if (file) {
               let sub = {

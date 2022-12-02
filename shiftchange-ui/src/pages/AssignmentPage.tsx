@@ -57,6 +57,7 @@ export const AssignmentPage: React.FC<AssignmentPageProps> = (props) => {
             >
               <Text variant="xxLargePlus">{props.assignment.name}</Text>
               <IconButton
+                ariaLabel="Download assignment"
                 iconProps={{ iconName: "Download" }}
                 onClick={() => window.open(props.assignment.link)}
               />

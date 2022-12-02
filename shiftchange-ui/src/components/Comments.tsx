@@ -98,6 +98,7 @@ export const Comments: React.FC<CommentsProps> = (props) => {
         );
       })}
       <TextField
+        ariaLabel="Make a comment"
         onChange={(event, newValue) => setComment(newValue ? newValue : "")}
         multiline
         placeholder="Make a comment"
@@ -105,6 +106,7 @@ export const Comments: React.FC<CommentsProps> = (props) => {
       />
       <Stack horizontal horizontalAlign="end">
         <PrimaryButton
+          ariaLabel="Upload comment"
           onClick={async () => {
             if (comment) {
               let apiComment: ApiComment = {

@@ -41,6 +41,7 @@ export const FilePreview: React.FC<FilePreviewProps> = (props) => {
             verticalAlign="center"
           >
             <IconButton
+              ariaLabel={`Change preview to page ${page - 1}`}
               disabled={page === 1}
               iconProps={{ iconName: "ChevronLeft" }}
               onClick={() => {
@@ -51,6 +52,7 @@ export const FilePreview: React.FC<FilePreviewProps> = (props) => {
               Page {page} of {numPages}
             </Text>
             <IconButton
+              ariaLabel={`Change preview to page ${page + 1}`}
               disabled={page === numPages}
               iconProps={{ iconName: "ChevronRight" }}
               onClick={() => {

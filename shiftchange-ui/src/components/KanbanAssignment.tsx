@@ -2,7 +2,7 @@ import React from "react";
 
 import { IconButton, Stack, Text, Theme } from "@fluentui/react";
 
-import { ApiAssignment, ApiClass } from "../api";
+import { ApiAssignment, ApiClass, AssignmentStatusTypes } from "../api";
 import { leftIcon, rightIcon } from "../icons";
 import { horizontalStackTokens } from "../styles";
 
@@ -14,6 +14,7 @@ type KanbanAssignmentProps = {
   setPage: (page: "home" | "assignment", data?: any) => void;
   showLeft: boolean;
   showRight: boolean;
+  statusType: AssignmentStatusTypes;
   theme: Theme;
 };
 
@@ -32,7 +33,17 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
       verticalAlign="center"
     >
       {props.showLeft && (
-        <IconButton iconProps={leftIcon} onClick={props.onLeft} />
+        <IconButton
+          ariaLabel={`Update status of assignment ${
+            props.assignment.name
+          } from ${
+            props.statusType === AssignmentStatusTypes.inwork
+              ? "in work to to-do"
+              : "complete to in work"
+          }`}
+          iconProps={leftIcon}
+          onClick={props.onLeft}
+        />
       )}
       <Stack.Item grow>
         <Stack
@@ -56,7 +67,17 @@ export const KanbanAssignment: React.FC<KanbanAssignmentProps> = (props) => {
         </Stack>
       </Stack.Item>
       {props.showRight && (
-        <IconButton iconProps={rightIcon} onClick={props.onRight} />
+        <IconButton
+          ariaLabel={`Update status of assignment ${
+            props.assignment.name
+          } from ${
+            props.statusType === AssignmentStatusTypes.inwork
+              ? "in work to complete"
+              : "to-do to in work"
+          }`}
+          iconProps={rightIcon}
+          onClick={props.onRight}
+        />
       )}
     </Stack>
   );
