@@ -6,7 +6,9 @@ import models
 from resources.course import bp as CourseBlueprint
 from resources.user import bp as UserBlueprint
 from flask_jwt_extended import JWTManager
-
+from resources.assignment import bp as AssignmentBlueprint
+from resources.course import bp as CourseBlueprint
+from resources.exam import bp as ExamBlueprint
 
 def create_app(db_url=None):
     app= Flask(__name__, instance_path=os.getcwd())
@@ -47,7 +49,9 @@ def create_app(db_url=None):
     with app.app_context():
         db.create_all()
 
-    api.register_blueprint(CourseBlueprint)
     api.register_blueprint(UserBlueprint)
+    api.register_blueprint(AssignmentBlueprint)
+    api.register_blueprint(CourseBlueprint)
+    api.register_blueprint(ExamBlueprint)
 
     return app

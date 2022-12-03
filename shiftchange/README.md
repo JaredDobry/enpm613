@@ -7,7 +7,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 ```angular2html
-pip isntall -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Connect to DB
