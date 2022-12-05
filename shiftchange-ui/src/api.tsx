@@ -5,6 +5,7 @@ export const STATUS_URL = `${BASE_URL}/status`;
 export const SUBMISSION_URL = `${BASE_URL}/submission`;
 export const MATERIAL_URL = `${BASE_URL}/material`;
 export const ASSIGNMENT_MANAGEMENT_URL = `${BASE_URL}/assignment`;
+export const GRADE_URL = `${BASE_URL}/grade`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -13,6 +14,9 @@ export const ENROLLMENTS_URL = (userId: string) => {
 };
 export const CLASS_URL = (classId: string) => {
   return `${BASE_URL}/class/${classId}`;
+};
+export const CLASS_ENROLLMENTS_URL = (classId: string) => {
+  return `${CLASS_URL(classId)}/enrollments`;
 };
 export const CLASS_MATERIALS_URL = (classId: string) => {
   return `${CLASS_URL(classId)}/materials`;
@@ -177,4 +181,10 @@ export type ApiAssignmentPost = {
   class_id?: string;
   description?: string;
   name?: string;
+} & ApiAuthenticatedPost;
+
+export type ApiGradePost = {
+  assignment_id: string;
+  student_id: string;
+  grade: number;
 } & ApiAuthenticatedPost;

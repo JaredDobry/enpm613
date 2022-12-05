@@ -121,6 +121,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /class/{classId}/enrollments:
+    parameters:
+      - name: classId
+        description: The uuid of the Class
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        200:
+          description: The enrollments corresponding to classId
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Enrollment"
+        404:
+          description: Class has no enrollments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /class/{classId}/materials:
     parameters:
       - name: classId
@@ -537,6 +567,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /grade:
+    post:
+      description: Update grade on assignment for student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GradePost"
+    responses:
+      200:
+        description: Successfully updated grade
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -821,3 +875,18 @@ components:
             name:
               description: Provided if type is "add", the name of the new assignment
               type: string
+    GradePost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - assignment_id
+            - student_id
+            - grade
+          properties:
+            assignment_id:
+              type: string
+            student_id:
+              type: string
+            grade:
+              type: number

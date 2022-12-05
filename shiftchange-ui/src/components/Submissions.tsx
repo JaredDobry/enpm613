@@ -12,6 +12,7 @@ import { SubmissionSelector } from "./SubmissionSelector";
 
 type SubmissionsProps = {
   assignment: ApiAssignment;
+  fileUpload: boolean;
   token: string;
   userId: string;
 };
@@ -42,7 +43,10 @@ export const Submissions: React.FC<SubmissionsProps> = (props) => {
 
   return (
     <Stack tokens={verticalStackTokens}>
-      <Text variant="xxLargePlus">Submissions</Text>
+      <Text variant={props.fileUpload ? "xxLargePlus" : "large"}>
+        Submissions
+      </Text>
+
       {submissions.map((submission, idx) => {
         return (
           <Link
@@ -51,21 +55,26 @@ export const Submissions: React.FC<SubmissionsProps> = (props) => {
             onClick={() => window.open(submission.link)}
           >
             <Stack>
-              <Text variant="large">
+              <Text variant={props.fileUpload ? "large" : "medium"}>
                 #{idx + 1} - {submission.timestamp}
               </Text>
-              <Text variant="large">{submission.name}</Text>
+              <Text variant={props.fileUpload ? "large" : "medium"}>
+                {submission.name}
+              </Text>
             </Stack>
           </Link>
         );
       })}
-      <SubmissionSelector
-        addSubmission={addSubmission}
-        assignment={props.assignment}
-        submissions={submissions}
-        token={props.token}
-        userId={props.userId}
-      />
+      {submissions.length === 0 && <Text>No submissions yet!</Text>}
+      {props.fileUpload && (
+        <SubmissionSelector
+          addSubmission={addSubmission}
+          assignment={props.assignment}
+          submissions={submissions}
+          token={props.token}
+          userId={props.userId}
+        />
+      )}
     </Stack>
   );
 };

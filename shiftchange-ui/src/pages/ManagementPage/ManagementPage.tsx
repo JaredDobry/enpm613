@@ -60,7 +60,13 @@ export const ManagementPage: React.FC<ManagementPageProps> = (props) => {
       </Stack>
       <Separator vertical />
       {selection && (
-        <AssignmentManager course={selection} token={props.token} />
+        <Stack.Item grow>
+          <AssignmentManager
+            course={selection}
+            token={props.token}
+            userId={props.userId}
+          />
+        </Stack.Item>
       )}
     </Stack>
   );

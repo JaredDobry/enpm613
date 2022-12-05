@@ -3,7 +3,6 @@ import {
   DefaultButton,
   Dialog,
   DialogFooter,
-  IconButton,
   MessageBar,
   MessageBarType,
   PrimaryButton,
@@ -17,16 +16,17 @@ import {
   ApiClass,
   ASSIGNMENTS_URL,
   ASSIGNMENT_MANAGEMENT_URL,
-  MATERIAL_URL,
 } from "../../api";
 import { ExpandablePane } from "../../components/ExpandablePane";
 import { horizontalStackTokens, verticalStackTokens } from "../../styles";
 import { AssignmentAdder } from "./AssignmentAdder";
 import { AssignmentRemover } from "./AssignmentRemover";
+import { AssignmentStudents } from "./AssignmentStudents";
 
 type AssignmentManagerProps = {
   course: ApiClass;
   token: string;
+  userId: string;
 };
 
 export const AssignmentManager: React.FC<AssignmentManagerProps> = (props) => {
@@ -79,7 +79,12 @@ export const AssignmentManager: React.FC<AssignmentManagerProps> = (props) => {
                 />
               }
             >
-              <Text>Hello world</Text>
+              <AssignmentStudents
+                assignment={value}
+                course={props.course}
+                token={props.token}
+                userId={props.userId}
+              />
             </ExpandablePane>
           );
         })}

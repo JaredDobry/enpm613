@@ -68,6 +68,7 @@ export const MaterialsManager: React.FC<MaterialsManagerProps> = (props) => {
         {materials.map((m) => {
           return (
             <MaterialRemover
+              key={`material-${m.id}`}
               material={m}
               token={props.token}
               setChoppingBlock={setChoppingBlock}

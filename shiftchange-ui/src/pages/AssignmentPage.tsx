@@ -84,6 +84,7 @@ export const AssignmentPage: React.FC<AssignmentPageProps> = (props) => {
       <Stack.Item styles={{ root: { minWidth: 400 } }}>
         <Submissions
           assignment={props.assignment}
+          fileUpload={true}
           token={props.token}
           userId={props.userId}
         />

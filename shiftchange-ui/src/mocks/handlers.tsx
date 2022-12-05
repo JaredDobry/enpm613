@@ -5,6 +5,7 @@ import {
   AddRemove,
   ApiAssignmentPost,
   ApiCommentPost,
+  ApiGradePost,
   ApiLoginPost,
   ApiMaterialPost,
   ApiStatusPost,
@@ -74,6 +75,17 @@ export const handlers = [
     if (!theClass)
       return res(ctx.status(404, `Class ${classId} doesn't exist`));
     else return res(ctx.status(200), ctx.json(theClass));
+  }),
+  rest.get("/class/:classId/enrollments", (req, res, ctx) => {
+    const { classId } = req.params;
+
+    const enrollments = mockEnrollments.filter((value) => {
+      return value.class_id === classId;
+    });
+
+    if (enrollments.length === 0)
+      return res(ctx.status(404, `Class ${classId} has noone enrolled in it`));
+    else return res(ctx.status(200), ctx.json(enrollments));
   }),
   rest.get("/class/:classId/assignments", (req, res, ctx) => {
     const { classId } = req.params;
@@ -251,5 +263,11 @@ export const handlers = [
       ctx.status(200),
       ctx.json(`${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`)
     );
+  }),
+  rest.post("/grade", async (req, res, ctx) => {
+    const g: ApiGradePost = await req.json();
+
+    if (g.grade === 0) return res(ctx.status(500, "Failed to update grade"));
+    return res(ctx.status(200));
   }),
 ];
