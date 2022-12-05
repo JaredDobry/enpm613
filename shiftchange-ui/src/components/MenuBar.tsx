@@ -42,12 +42,14 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
             onClick={() => props.setPage("home")}
             text="ShiftChange"
           />
-          <ActionButton
-            ariaLabel="Class management"
-            iconProps={{ iconName: "Script" }}
-            onClick={() => props.setPage("management")}
-            text="Class Management"
-          />
+          {props.accountType === ApiLoginTypes.professor && (
+            <ActionButton
+              ariaLabel="Class management"
+              iconProps={{ iconName: "Script" }}
+              onClick={() => props.setPage("management")}
+              text="Class Management"
+            />
+          )}
         </Stack>
         <Stack horizontal>
           <IconButton
