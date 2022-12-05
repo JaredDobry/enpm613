@@ -10,9 +10,15 @@ import {
   TextField,
 } from "@fluentui/react";
 
-import { ApiLoginPost, LOGIN_URL } from "../api";
+import {
+  ApiLoginPost,
+  ApiLoginResponse,
+  ApiLoginTypes,
+  LOGIN_URL,
+} from "../api";
 
 type LoginPageProps = {
+  setLoginType: (lt: ApiLoginTypes) => void;
   setToken: (token: string) => void;
 };
 
@@ -64,8 +70,9 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
                 method: "POST",
               });
               if (response.ok) {
-                const token = await response.json();
-                props.setToken(token);
+                const login: ApiLoginResponse = await response.json();
+                props.setLoginType(login.account_type);
+                props.setToken(login.token);
               } else {
                 setLoginFailed(true);
               }

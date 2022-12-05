@@ -32,12 +32,8 @@ export const Materials: React.FC<MaterialsProps> = (props) => {
       </Text>
       {materials.map((value) => {
         return (
-          <Stack horizontal>
-            <Link
-              href={value.link}
-              key={`material-${value.id}`}
-              onClick={() => window.open(value.link)}
-            >
+          <Stack horizontal key={`material-${value.id}`}>
+            <Link href={value.link} onClick={() => window.open(value.link)}>
               <Text variant="large">{value.name}</Text>
             </Link>
           </Stack>

@@ -7,12 +7,16 @@ import { AssignmentPage } from "./pages/AssignmentPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
+import { ApiLoginTypes } from "./api";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
+  const [loginType, setLoginType] = React.useState<ApiLoginTypes>();
   const [page, setPage] = React.useState<string>("login");
   const [pageData, setPageData] = React.useState<any>();
   const [token, setToken] = React.useState<string>();
+
+  console.log(loginType);
 
   const theme = createTheme({ palette: darkMode ? darkPalette : lightPalette });
 
@@ -36,6 +40,7 @@ const App: React.FC = () => {
         )}
         {page === "login" && (
           <LoginPage
+            setLoginType={setLoginType}
             setToken={(token: string) => {
               setToken(token);
               setPage("home");

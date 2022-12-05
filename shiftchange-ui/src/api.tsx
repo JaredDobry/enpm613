@@ -126,6 +126,17 @@ export type ApiComment = {
   timestamp: string;
 };
 
+export enum ApiLoginTypes {
+  admin = "admin",
+  professor = "professor",
+  student = "student",
+}
+
+export type ApiLoginResponse = {
+  account_type: ApiLoginTypes;
+  token: string;
+};
+
 export type ApiLoginPost = {
   username: string;
   password: string;

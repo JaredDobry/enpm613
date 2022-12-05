@@ -390,8 +390,7 @@ paths:
           content:
             application/json:
               schema:
-                description: Login session token
-                type: string
+                $ref: "#/components/schemas/LoginResponse"
         401:
           description: "Failed to login"
           content:
@@ -651,6 +650,16 @@ components:
         timestamp:
           type: string
           format: date-time
+    LoginResponse:
+      type: object
+      required:
+        - account_type
+        - token
+      properties:
+        account_type:
+          type: string
+        token:
+          type: string
     Error:
       type: object
       required:

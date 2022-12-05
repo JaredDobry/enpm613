@@ -167,15 +167,27 @@ export const handlers = [
   rest.post("/login", async (req, res, ctx) => {
     const login: ApiLoginPost = await req.json();
     if (login.username === "fail") return res(ctx.status(500, "Login failed"));
+    else if (login.username === "professor")
+      return res(
+        ctx.status(200),
+        ctx.json({
+          account_type: "professor",
+          token: new sha256()
+            .update(login.username)
+            .update(login.password)
+            .digest("hex"),
+        })
+      );
     else
       return res(
         ctx.status(200),
-        ctx.json(
-          new sha256()
+        ctx.json({
+          account_type: "student",
+          token: new sha256()
             .update(login.username)
             .update(login.password)
-            .digest("hex")
-        )
+            .digest("hex"),
+        })
       );
   }),
   rest.post("/comment", async (req, res, ctx) => {
