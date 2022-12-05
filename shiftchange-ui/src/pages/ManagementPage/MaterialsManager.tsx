@@ -21,12 +21,12 @@ import { horizontalStackTokens, verticalStackTokens } from "../../styles";
 import { MaterialAdder } from "./MaterialAdder";
 import { MaterialRemover } from "./MaterialRemover";
 
-type MaterialsMangerProps = {
+type MaterialsManagerProps = {
   course: ApiClass;
   token: string;
 };
 
-export const MaterialsManger: React.FC<MaterialsMangerProps> = (props) => {
+export const MaterialsManager: React.FC<MaterialsManagerProps> = (props) => {
   const [materials, setMaterials] = React.useState<ApiCourseMaterial[]>([]);
   const [choppingBlock, setChoppingBlock] = React.useState<ApiCourseMaterial>();
   const [error, setError] = React.useState<string>();
@@ -50,7 +50,7 @@ export const MaterialsManger: React.FC<MaterialsMangerProps> = (props) => {
     <>
       <Stack tokens={verticalStackTokens}>
         <Stack horizontal tokens={horizontalStackTokens} verticalAlign="center">
-          <Text variant="large">Materials</Text>
+          <Text variant="xxLarge">Materials</Text>
           <ActionButton
             iconProps={{ iconName: "Add" }}
             onClick={() => setShowAdd(true)}

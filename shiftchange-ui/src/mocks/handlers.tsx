@@ -3,6 +3,7 @@ import { sha256 } from "sha.js";
 
 import {
   AddRemove,
+  ApiAssignmentPost,
   ApiCommentPost,
   ApiLoginPost,
   ApiMaterialPost,
@@ -231,6 +232,21 @@ export const handlers = [
     }
     if (m.name === "fail")
       return res(ctx.status(500, "Failed to upload materials"));
+    return res(
+      ctx.status(200),
+      ctx.json(`${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`)
+    );
+  }),
+  rest.post("/assignment", async (req, res, ctx) => {
+    const a: ApiAssignmentPost = await req.json();
+
+    if (a.action_type === AddRemove.remove) {
+      if (a.id === "3")
+        return res(ctx.status(500, "Failed to remove assignment"));
+      return res(ctx.status(200));
+    }
+    if (a.name === "fail")
+      return res(ctx.status(500, "Failed to upload assignment"));
     return res(
       ctx.status(200),
       ctx.json(`${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`)

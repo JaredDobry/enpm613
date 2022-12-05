@@ -6,9 +6,14 @@ import {
   ENROLLMENTS_URL,
   EnrollmentTypes,
 } from "../../api";
-import { marginStyles, verticalStackTokens } from "../../styles";
+import {
+  horizontalStackTokens,
+  marginStyles,
+  verticalStackTokens,
+} from "../../styles";
+import { AssignmentManager } from "./AssignmentManager";
 import { ManagementRadioButtons } from "./ManagementRadioButtons";
-import { MaterialsManger } from "./MaterialsManager";
+import { MaterialsManager } from "./MaterialsManager";
 
 type ManagementPageProps = {
   token: string;
@@ -38,18 +43,24 @@ export const ManagementPage: React.FC<ManagementPageProps> = (props) => {
   }, [props.userId]);
 
   return (
-    <Stack styles={marginStyles} tokens={verticalStackTokens}>
-      <Text variant="xxLarge">Class Management</Text>
-      <ManagementRadioButtons
-        enrollments={enrollments}
-        selection={selection}
-        setSelected={setSelection}
-      />
+    <Stack horizontal styles={marginStyles} tokens={horizontalStackTokens}>
+      <Stack tokens={verticalStackTokens}>
+        <Text variant="xxLarge">Class Management</Text>
+        <ManagementRadioButtons
+          enrollments={enrollments}
+          selection={selection}
+          setSelected={setSelection}
+        />
+        {selection && (
+          <>
+            <Separator />
+            <MaterialsManager course={selection} token={props.token} />
+          </>
+        )}
+      </Stack>
+      <Separator vertical />
       {selection && (
-        <>
-          <Separator />
-          <MaterialsManger course={selection} token={props.token} />
-        </>
+        <AssignmentManager course={selection} token={props.token} />
       )}
     </Stack>
   );

@@ -4,6 +4,7 @@ export const COMMENT_URL = `${BASE_URL}/comment`;
 export const STATUS_URL = `${BASE_URL}/status`;
 export const SUBMISSION_URL = `${BASE_URL}/submission`;
 export const MATERIAL_URL = `${BASE_URL}/material`;
+export const ASSIGNMENT_MANAGEMENT_URL = `${BASE_URL}/assignment`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -166,5 +167,14 @@ export type ApiMaterialPost = {
   id?: string;
   blob?: string;
   class_id?: string;
+  name?: string;
+} & ApiAuthenticatedPost;
+
+export type ApiAssignmentPost = {
+  action_type: AddRemove;
+  id?: string;
+  blob?: string;
+  class_id?: string;
+  description?: string;
   name?: string;
 } & ApiAuthenticatedPost;
