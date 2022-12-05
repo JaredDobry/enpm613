@@ -3,7 +3,7 @@ import React from "react";
 import { horizontalStackTokens, verticalStackTokens } from "../styles";
 
 type ExpandablePaneProps = {
-  label: string;
+  paneElement: JSX.Element;
 };
 
 export const ExpandablePane: React.FC<ExpandablePaneProps> = (props) => {
@@ -15,9 +15,9 @@ export const ExpandablePane: React.FC<ExpandablePaneProps> = (props) => {
           iconProps={{ iconName: expanded ? "ChevronUp" : "ChevronDown" }}
           onClick={() => setExpanded(!expanded)}
         />
-        <Text>{props.label}</Text>
+        <Stack.Item grow>{props.paneElement}</Stack.Item>
       </Stack>
-      {expanded && <div style={{ marginLeft: 20 }}>props.children</div>}
+      {expanded && <div style={{ marginLeft: 20 }}>{props.children}</div>}
     </Stack>
   );
 };

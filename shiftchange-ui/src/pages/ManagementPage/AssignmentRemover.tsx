@@ -1,27 +1,27 @@
 import { IconButton, Stack, Text } from "@fluentui/react";
 import React from "react";
-import { ApiCourseMaterial } from "../../api";
+import { ApiAssignment, ApiCourseMaterial } from "../../api";
 import { horizontalStackTokens } from "../../styles";
 
-type MaterialRemoverProps = {
-  material: ApiCourseMaterial;
+type AssignmentRemoverProps = {
+  assignment: ApiAssignment;
   token: string;
-  setChoppingBlock: (m: ApiCourseMaterial) => void;
+  setChoppingBlock: (a: ApiAssignment) => void;
 };
 
-export const MaterialRemover: React.FC<MaterialRemoverProps> = (props) => {
+export const AssignmentRemover: React.FC<AssignmentRemoverProps> = (props) => {
   return (
     <Stack
       horizontal
       horizontalAlign="space-between"
-      key={`material-${props.material.id}`}
+      key={`assignment-${props.assignment.id}`}
       tokens={horizontalStackTokens}
       verticalAlign="center"
     >
-      <Text>{props.material.name}</Text>
+      <Text>{props.assignment.name}</Text>
       <IconButton
         iconProps={{ iconName: "CalculatorSubtract" }}
-        onClick={() => props.setChoppingBlock(props.material)}
+        onClick={() => props.setChoppingBlock(props.assignment)}
       />
     </Stack>
   );
