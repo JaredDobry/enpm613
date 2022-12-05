@@ -8,6 +8,7 @@ import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
 import { ApiLoginTypes } from "./api";
+import { ManagementPage } from "./pages/ManagementPage/ManagementPage";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
@@ -16,22 +17,22 @@ const App: React.FC = () => {
   const [pageData, setPageData] = React.useState<any>();
   const [token, setToken] = React.useState<string>();
 
-  console.log(loginType);
-
   const theme = createTheme({ palette: darkMode ? darkPalette : lightPalette });
 
   return (
     <ThemeProvider applyTo="body" theme={theme}>
       <Stack tokens={verticalStackTokens}>
-        {page !== "login" && (
+        {page !== "login" && loginType && (
           <MenuBar
+            accountType={loginType}
             darkMode={darkMode}
             setDarkMode={setDarkMode}
-            setPage={(page: "home" | "assignment") => {
+            setPage={(page: "home" | "assignment" | "management") => {
               setPage(page);
               setPageData(undefined);
             }}
             signOut={() => {
+              setLoginType(undefined);
               setToken(undefined);
               setPage("login");
             }}
@@ -66,6 +67,9 @@ const App: React.FC = () => {
             token={token}
             userId="1"
           />
+        )}
+        {page === "management" && token && (
+          <ManagementPage token={token} userId="4" />
         )}
       </Stack>
     </ThemeProvider>

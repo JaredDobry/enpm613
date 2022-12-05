@@ -97,6 +97,11 @@ export const mockEnrollments: ApiEnrollment[] = [
     enrollment_type: EnrollmentTypes.professor,
   },
   {
+    class_id: "3",
+    user_id: "4",
+    enrollment_type: EnrollmentTypes.professor,
+  },
+  {
     class_id: "5",
     user_id: "1",
     enrollment_type: EnrollmentTypes.student,

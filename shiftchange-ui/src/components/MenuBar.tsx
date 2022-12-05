@@ -9,9 +9,11 @@ import {
 } from "@fluentui/react";
 
 import { Settings, SettingsProps } from "./Settings";
+import { ApiLoginTypes } from "../api";
 
 interface MenuBarProps extends SettingsProps {
-  setPage: (page: "home" | "assignment") => void;
+  accountType: ApiLoginTypes;
+  setPage: (page: "home" | "assignment" | "management") => void;
   signOut: () => void;
   theme: Theme;
 }
@@ -33,12 +35,20 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
         }}
         verticalAlign="center"
       >
-        <ActionButton
-          ariaLabel="Go to home page"
-          iconProps={{ iconName: "Home" }}
-          onClick={() => props.setPage("home")}
-          text="ShiftChange"
-        />
+        <Stack horizontal>
+          <ActionButton
+            ariaLabel="Go to home page"
+            iconProps={{ iconName: "Home" }}
+            onClick={() => props.setPage("home")}
+            text="ShiftChange"
+          />
+          <ActionButton
+            ariaLabel="Class management"
+            iconProps={{ iconName: "Script" }}
+            onClick={() => props.setPage("management")}
+            text="Class Management"
+          />
+        </Stack>
         <Stack horizontal>
           <IconButton
             ariaLabel="Sign out"
