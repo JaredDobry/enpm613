@@ -18,6 +18,7 @@ import {
   MATERIAL_URL,
 } from "../../api";
 import { horizontalStackTokens, verticalStackTokens } from "../../styles";
+import { MaterialAdder } from "./MaterialAdder";
 import { MaterialRemover } from "./MaterialRemover";
 
 type MaterialsMangerProps = {
@@ -29,6 +30,7 @@ export const MaterialsManger: React.FC<MaterialsMangerProps> = (props) => {
   const [materials, setMaterials] = React.useState<ApiCourseMaterial[]>([]);
   const [choppingBlock, setChoppingBlock] = React.useState<ApiCourseMaterial>();
   const [error, setError] = React.useState<string>();
+  const [showAdd, setShowAdd] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchClassMaterials = async () => {
@@ -51,6 +53,7 @@ export const MaterialsManger: React.FC<MaterialsMangerProps> = (props) => {
           <Text variant="large">Materials</Text>
           <ActionButton
             iconProps={{ iconName: "Add" }}
+            onClick={() => setShowAdd(true)}
             text="Upload Materials"
           />
         </Stack>
@@ -113,6 +116,14 @@ export const MaterialsManger: React.FC<MaterialsMangerProps> = (props) => {
           </Stack>
         </DialogFooter>
       </Dialog>
+      <MaterialAdder
+        addMaterial={(s) => setMaterials((old) => [...old, s])}
+        course={props.course}
+        setError={setError}
+        setShow={setShowAdd}
+        show={showAdd}
+        token={props.token}
+      />
     </>
   );
 };
