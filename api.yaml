@@ -479,6 +479,35 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /material:
+    post:
+      description: "Upload or delete course materials."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MaterialPost"
+    responses:
+      200:
+        description: Successfully uploaded/removed material
+        content:
+          application/json:
+            schema:
+              description: If the action was "add", the unique ID of the new material
+              type: string
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     User:
@@ -716,3 +745,25 @@ components:
               type: string
             submission:
               $ref: "#/components/schemas/Submission"
+    MaterialPost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - action_type
+          properties:
+            action_type:
+              description: "add" or "remove"
+              type: string
+            id:
+              description: Provided if type is "remove", the ID of the materials to delete.
+              type: string
+            blob:
+              description: Provided if type is "add", the contents of the file read from javascript's Blob.text()
+              type: string
+            class_id:
+              description: Provided if type is "add", the id of the class to add this material to
+              type: string
+            name:
+              description: Provided if type is "add", the name of the new material
+              type: string

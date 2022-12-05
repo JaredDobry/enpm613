@@ -35,7 +35,6 @@ export const ManagementRadioButtons: React.FC<ManagementRadioButtonsProps> = (
   return (
     <ChoiceGroup
       onChange={(event, option) => {
-        console.log(option);
         if (option) {
           props.setSelected(
             courses.find((value) => {

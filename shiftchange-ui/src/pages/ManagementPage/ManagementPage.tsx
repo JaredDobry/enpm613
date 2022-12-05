@@ -1,4 +1,4 @@
-import { Stack, Text } from "@fluentui/react";
+import { Separator, Stack, Text } from "@fluentui/react";
 import React from "react";
 import {
   ApiClass,
@@ -45,7 +45,12 @@ export const ManagementPage: React.FC<ManagementPageProps> = (props) => {
         selection={selection}
         setSelected={setSelection}
       />
-      {selection && <MaterialsManger course={selection} token={props.token} />}
+      {selection && (
+        <>
+          <Separator />
+          <MaterialsManger course={selection} token={props.token} />
+        </>
+      )}
     </Stack>
   );
 };

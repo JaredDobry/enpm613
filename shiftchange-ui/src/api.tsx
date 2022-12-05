@@ -3,6 +3,7 @@ export const LOGIN_URL = `${BASE_URL}/login`;
 export const COMMENT_URL = `${BASE_URL}/comment`;
 export const STATUS_URL = `${BASE_URL}/status`;
 export const SUBMISSION_URL = `${BASE_URL}/submission`;
+export const MATERIAL_URL = `${BASE_URL}/material`;
 export const USER_URL = (userId: string) => {
   return `${BASE_URL}/user/${userId}`;
 };
@@ -153,4 +154,17 @@ export type ApiStatusPost = {
 export type ApiSubmissionPost = {
   blob: string;
   submission: ApiSubmission;
+} & ApiAuthenticatedPost;
+
+export enum AddRemove {
+  add = "add",
+  remove = "remove",
+}
+
+export type ApiMaterialPost = {
+  action_type: AddRemove;
+  id?: string;
+  blob?: string;
+  class_id?: string;
+  name?: string;
 } & ApiAuthenticatedPost;
