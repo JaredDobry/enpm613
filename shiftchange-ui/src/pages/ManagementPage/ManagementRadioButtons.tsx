@@ -1,5 +1,7 @@
-import { ChoiceGroup } from "@fluentui/react";
 import React from "react";
+
+import { ChoiceGroup } from "@fluentui/react";
+
 import { ApiClass, ApiEnrollment, CLASS_URL } from "../../api";
 
 type ManagementRadioButtonsProps = {

@@ -1,5 +1,7 @@
-import { Separator, Stack, Text } from "@fluentui/react";
 import React from "react";
+
+import { Separator, Stack, Text } from "@fluentui/react";
+
 import {
   ApiClass,
   ApiEnrollment,

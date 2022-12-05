@@ -1,9 +1,11 @@
 import React from "react";
+
 import { Separator, Text } from "@fluentui/react";
-import { ExpandablePane } from "../../components/ExpandablePane";
+
 import { ApiAssignment, ApiUser, USER_URL } from "../../api";
-import { Submissions } from "../../components/Submissions";
 import { Comments } from "../../components/Comments";
+import { ExpandablePane } from "../../components/ExpandablePane";
+import { Submissions } from "../../components/Submissions";
 import { Grader } from "./Grader";
 
 type AssignmentStudentProps = {

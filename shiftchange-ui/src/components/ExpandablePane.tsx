@@ -1,5 +1,7 @@
-import { IconButton, Stack } from "@fluentui/react";
 import React from "react";
+
+import { IconButton, Stack } from "@fluentui/react";
+
 import { horizontalStackTokens, verticalStackTokens } from "../styles";
 
 type ExpandablePaneProps = {

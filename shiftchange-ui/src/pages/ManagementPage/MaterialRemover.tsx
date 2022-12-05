@@ -1,5 +1,7 @@
-import { IconButton, Stack, Text } from "@fluentui/react";
 import React from "react";
+
+import { IconButton, Stack, Text } from "@fluentui/react";
+
 import { ApiCourseMaterial } from "../../api";
 import { horizontalStackTokens } from "../../styles";
 

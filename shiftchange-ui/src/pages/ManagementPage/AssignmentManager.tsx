@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   ActionButton,
   DefaultButton,
@@ -9,13 +11,13 @@ import {
   Stack,
   Text,
 } from "@fluentui/react";
-import React from "react";
+
 import {
   AddRemove,
   ApiAssignment,
   ApiClass,
-  ASSIGNMENTS_URL,
   ASSIGNMENT_MANAGEMENT_URL,
+  ASSIGNMENTS_URL,
 } from "../../api";
 import { ExpandablePane } from "../../components/ExpandablePane";
 import { horizontalStackTokens, verticalStackTokens } from "../../styles";

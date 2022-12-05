@@ -8,8 +8,8 @@ import {
   Theme,
 } from "@fluentui/react";
 
-import { Settings, SettingsProps } from "./Settings";
 import { ApiLoginTypes } from "../api";
+import { Settings, SettingsProps } from "./Settings";
 
 interface MenuBarProps extends SettingsProps {
   accountType: ApiLoginTypes;
