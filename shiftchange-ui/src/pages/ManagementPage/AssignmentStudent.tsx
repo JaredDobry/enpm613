@@ -51,7 +51,7 @@ export const AssignmentStudent: React.FC<AssignmentStudentProps> = (props) => {
       <Comments
         assignment={props.assignment}
         token={props.token}
-        userId={props.studentId}
+        userId={props.userId}
       />
       <Separator />
     </ExpandablePane>
