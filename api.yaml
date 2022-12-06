@@ -405,6 +405,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /register:
+    post:
+      description: Sign up for ShiftChange
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterPost"
+      responses:
+        200:
+          description: Successful registration
+        500:
+          description: Failed to register
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /login:
     post:
       description: "Log into ShiftChange"
@@ -789,6 +807,17 @@ components:
           type: string
         password:
           description: SHA-256 hash of password
+          type: string
+    RegisterPost:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          description: SHA-256 hash of the password
           type: string
     AuthenticatedPost:
       type: object

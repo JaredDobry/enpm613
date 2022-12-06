@@ -8,6 +8,7 @@ import {
   ApiGradePost,
   ApiLoginPost,
   ApiMaterialPost,
+  ApiRegisterPost,
   ApiStatusPost,
   ApiSubmissionPost,
 } from "../api";
@@ -178,6 +179,12 @@ export const handlers = [
         )
       );
     else return res(ctx.status(200), ctx.json(subs));
+  }),
+  rest.post("/register", async (req, res, ctx) => {
+    const register: ApiRegisterPost = await req.json();
+    if (register.username === "fail")
+      return res(ctx.status(500, "Registration failed"));
+    else return res(ctx.status(200));
   }),
   rest.post("/login", async (req, res, ctx) => {
     const login: ApiLoginPost = await req.json();

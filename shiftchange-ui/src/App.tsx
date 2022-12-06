@@ -9,6 +9,7 @@ import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ManagementPage } from "./pages/ManagementPage/ManagementPage";
 import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
+import { RegisterPage } from "./pages/RegisterPage";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
@@ -22,7 +23,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider applyTo="body" theme={theme}>
       <Stack tokens={verticalStackTokens}>
-        {page !== "login" && loginType && (
+        {page !== "login" && page !== "register" && loginType && (
           <MenuBar
             accountType={loginType}
             darkMode={darkMode}
@@ -42,12 +43,14 @@ const App: React.FC = () => {
         {page === "login" && (
           <LoginPage
             setLoginType={setLoginType}
+            setPage={setPage}
             setToken={(token: string) => {
               setToken(token);
               setPage("home");
             }}
           />
         )}
+        {page === "register" && <RegisterPage setPage={setPage} />}
         {page === "home" && token && (
           <HomePage
             setPage={(page: "home" | "assignment", data?: any) => {

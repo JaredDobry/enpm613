@@ -1,4 +1,5 @@
 export const BASE_URL = "";
+export const REGISTER_URL = `${BASE_URL}/register`;
 export const LOGIN_URL = `${BASE_URL}/login`;
 export const COMMENT_URL = `${BASE_URL}/comment`;
 export const STATUS_URL = `${BASE_URL}/status`;
@@ -143,10 +144,12 @@ export type ApiLoginResponse = {
   token: string;
 };
 
-export type ApiLoginPost = {
+export type ApiRegisterPost = {
   username: string;
   password: string;
 };
+
+export type ApiLoginPost = ApiRegisterPost;
 
 export type ApiCommentPost = {
   comment: ApiComment;

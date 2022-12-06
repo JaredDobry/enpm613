@@ -2,6 +2,7 @@ import React from "react";
 import { sha256 } from "sha.js";
 
 import {
+  DefaultButton,
   MessageBar,
   MessageBarType,
   PrimaryButton,
@@ -19,6 +20,7 @@ import {
 
 type LoginPageProps = {
   setLoginType: (lt: ApiLoginTypes) => void;
+  setPage: (page: string) => void;
   setToken: (token: string) => void;
 };
 
@@ -43,6 +45,7 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
           ariaLabel="Login username"
           label="Username"
           onChange={(event, newValue) => setUsername(newValue ? newValue : "")}
+          required
           styles={{ root: { width: 300 } }}
           value={username}
         />
@@ -51,11 +54,17 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
           canRevealPassword
           label="Password"
           onChange={(event, newValue) => setPassword(newValue ? newValue : "")}
+          required
           styles={{ root: { width: 300 } }}
           type="password"
           value={password}
         />
-        <Stack horizontal horizontalAlign="end">
+        <Stack horizontal horizontalAlign="space-between">
+          <DefaultButton
+            onClick={() => props.setPage("register")}
+            styles={{ root: { marginBottom: 20, marginTop: 20 } }}
+            text="Sign Up"
+          />
           <PrimaryButton
             ariaLabel="Login"
             onClick={async () => {
