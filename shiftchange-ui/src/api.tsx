@@ -196,7 +196,7 @@ export type ApiGradePost = {
 
 export type ApiEnrollPost = {
   action_type: AddRemove;
-  enrollment_type: "student" | "professor";
+  enrollment_type?: "student" | "professor";
   class_id: string;
   user_id: string;
 } & ApiAuthenticatedPost;

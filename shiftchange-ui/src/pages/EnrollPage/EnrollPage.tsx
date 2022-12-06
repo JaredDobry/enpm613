@@ -56,6 +56,15 @@ export const EnrollPage: React.FC<EnrollPageProps> = (props) => {
             })}
             enrollment={e}
             key={`enrollment-${e.class_id}-${e.user_id}`}
+            removeEnrollment={(class_id) => {
+              setEnrollments(
+                enrollments.filter((en) => {
+                  return en.class_id !== class_id;
+                })
+              );
+            }}
+            token={props.token}
+            userId={props.userId}
           />
         );
       })}
@@ -78,6 +87,7 @@ export const EnrollPage: React.FC<EnrollPageProps> = (props) => {
                 setEnrollments((old) => [...old, e]);
               }}
               course={c}
+              key={`available_enrollment-${c.id}`}
               token={props.token}
               userId={props.userId}
             />
