@@ -1,16 +1,18 @@
+import React from "react";
+import { sha256 } from "sha.js";
+
 import {
+  DefaultButton,
+  Link,
+  MessageBar,
+  MessageBarType,
+  PrimaryButton,
   Stack,
   Text,
   TextField,
-  DefaultButton,
-  PrimaryButton,
-  MessageBar,
-  MessageBarType,
-  Link,
 } from "@fluentui/react";
-import React from "react";
-import { sha256 } from "sha.js";
-import { LOGIN_URL, ApiRegisterPost, REGISTER_URL } from "../api";
+
+import { ApiRegisterPost, REGISTER_URL } from "../api";
 
 type RegisterPageProps = {
   setPage: (page: string) => void;

@@ -5,7 +5,6 @@ import {
   AddRemove,
   ApiAssignmentPost,
   ApiCommentPost,
-  ApiEnrollPost,
   ApiGradePost,
   ApiLoginPost,
   ApiMaterialPost,

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   DefaultButton,
   Dialog,
@@ -9,13 +11,12 @@ import {
   Stack,
   Text,
 } from "@fluentui/react";
-import React from "react";
+
 import {
   AddRemove,
   ApiClass,
   ApiEnrollment,
   ApiEnrollPost,
-  EnrollmentTypes,
   ENROLL_URL,
 } from "../../api";
 import { horizontalStackTokens } from "../../styles";

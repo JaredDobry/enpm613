@@ -5,12 +5,12 @@ import { createTheme, Stack, ThemeProvider } from "@fluentui/react";
 import { ApiLoginTypes } from "./api";
 import { MenuBar } from "./components/MenuBar";
 import { AssignmentPage } from "./pages/AssignmentPage";
+import { EnrollPage } from "./pages/EnrollPage/EnrollPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ManagementPage } from "./pages/ManagementPage/ManagementPage";
-import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
 import { RegisterPage } from "./pages/RegisterPage";
-import { EnrollPage } from "./pages/EnrollPage/EnrollPage";
+import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
