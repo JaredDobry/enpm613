@@ -10,7 +10,7 @@ import {
 } from "@fluentui/react";
 import React from "react";
 import { sha256 } from "sha.js";
-import { LOGIN_URL, ApiRegisterPost } from "../api";
+import { LOGIN_URL, ApiRegisterPost, REGISTER_URL } from "../api";
 
 type RegisterPageProps = {
   setPage: (page: string) => void;
@@ -68,7 +68,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = (props) => {
                   username: username,
                   password: encrypted,
                 };
-                const response = await fetch(LOGIN_URL, {
+                const response = await fetch(REGISTER_URL, {
                   body: JSON.stringify(post),
                   headers: { "Content-Type": "application/json" },
                   method: "POST",
