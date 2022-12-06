@@ -825,9 +825,12 @@ components:
       type: object
       required:
         - account_type
+        - user_id
         - token
       properties:
         account_type:
+          type: string
+        user_id:
           type: string
         token:
           type: string

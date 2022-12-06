@@ -22,6 +22,7 @@ type LoginPageProps = {
   setLoginType: (lt: ApiLoginTypes) => void;
   setPage: (page: string) => void;
   setToken: (token: string) => void;
+  setUserId: (userId: string) => void;
 };
 
 export const LoginPage: React.FC<LoginPageProps> = (props) => {
@@ -82,6 +83,7 @@ export const LoginPage: React.FC<LoginPageProps> = (props) => {
                 const login: ApiLoginResponse = await response.json();
                 props.setLoginType(login.account_type);
                 props.setToken(login.token);
+                props.setUserId(login.user_id);
               } else {
                 setLoginFailed(true);
               }

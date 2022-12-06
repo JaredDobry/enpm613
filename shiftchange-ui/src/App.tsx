@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const [page, setPage] = React.useState<string>("login");
   const [pageData, setPageData] = React.useState<any>();
   const [token, setToken] = React.useState<string>();
+  const [userId, setUserId] = React.useState<string>();
 
   const theme = createTheme({ palette: darkMode ? darkPalette : lightPalette });
 
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             signOut={() => {
               setLoginType(undefined);
               setToken(undefined);
+              setUserId(undefined);
               setPage("login");
             }}
             theme={theme}
@@ -49,10 +51,11 @@ const App: React.FC = () => {
               setToken(token);
               setPage("home");
             }}
+            setUserId={setUserId}
           />
         )}
         {page === "register" && <RegisterPage setPage={setPage} />}
-        {page === "home" && token && (
+        {page === "home" && token && userId && (
           <HomePage
             setPage={(page: "home" | "assignment", data?: any) => {
               setPage(page);
@@ -60,23 +63,23 @@ const App: React.FC = () => {
             }}
             theme={theme}
             token={token}
-            userId="1"
+            userId={userId}
           />
         )}
-        {page === "enroll" && token && (
-          <EnrollPage token={token} userId={"1"} />
+        {page === "enroll" && token && userId && (
+          <EnrollPage token={token} userId={userId} />
         )}
-        {page === "assignment" && token && (
+        {page === "assignment" && token && userId && (
           <AssignmentPage
             assignment={pageData.assignment}
             course={pageData.course}
             theme={theme}
             token={token}
-            userId="1"
+            userId={userId}
           />
         )}
-        {page === "management" && token && (
-          <ManagementPage token={token} userId="4" />
+        {page === "management" && token && userId && (
+          <ManagementPage token={token} userId={userId} />
         )}
       </Stack>
     </ThemeProvider>

@@ -143,6 +143,7 @@ export enum ApiLoginTypes {
 
 export type ApiLoginResponse = {
   account_type: ApiLoginTypes;
+  user_id: string;
   token: string;
 };
 
