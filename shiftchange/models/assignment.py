@@ -2,7 +2,7 @@ from db import db
 
 
 class AssignmentModel(db.Model):
-    __tablename__ = "assginments"
+    __tablename__ = "assignments"
 
     id = db.Column(db.Integer, primary_key=True)
     assignment_name = db.Column(db.String(80), unique=True, nullable=False)
