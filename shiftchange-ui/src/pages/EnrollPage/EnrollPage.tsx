@@ -72,7 +72,16 @@ export const EnrollPage: React.FC<EnrollPageProps> = (props) => {
           );
         })
         .map((c) => {
-          return <EnrollmentAdder course={c} />;
+          return (
+            <EnrollmentAdder
+              addEnrollment={(e) => {
+                setEnrollments((old) => [...old, e]);
+              }}
+              course={c}
+              token={props.token}
+              userId={props.userId}
+            />
+          );
         })}
     </Stack>
   );

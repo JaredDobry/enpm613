@@ -573,6 +573,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /enrollment:
+    post:
+      description: Enroll or unenroll from a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnrollPost"
+    responses:
+      200:
+        description: Successfully (un)enrolled from course
+      401:
+        description: "Unauthorized POST attempt"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      500:
+        description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /assignment:
     post:
       description: Upload or delete course assignment
@@ -895,6 +919,27 @@ components:
               type: string
             name:
               description: Provided if type is "add", the name of the new material
+              type: string
+    EnrollPost:
+      allOf:
+        - $ref: "#/components/schemas/AuthenticatedPost"
+        - type: object
+          required:
+            - action_type
+            - class_id
+            - user_id
+          properties:
+            action_type:
+              description: "add" or "remove"
+              type: string
+            class_id:
+              description: The class ID to (un)enroll in
+              type: string
+            user_id:
+              description: The user ID doing the (un)enrolling
+              type: string
+            enrollment_type:
+              description: Provided if type is "add", "student" or "professor"
               type: string
     AssignmentPost:
       allOf:

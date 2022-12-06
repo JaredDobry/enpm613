@@ -5,6 +5,7 @@ import {
   AddRemove,
   ApiAssignmentPost,
   ApiCommentPost,
+  ApiEnrollPost,
   ApiGradePost,
   ApiLoginPost,
   ApiMaterialPost,
@@ -279,5 +280,10 @@ export const handlers = [
 
     if (g.grade === 0) return res(ctx.status(500, "Failed to update grade"));
     return res(ctx.status(200));
+  }),
+  rest.post("/enrollment", async (req, res, ctx) => {
+    const e: ApiEnrollPost = await req.json();
+
+    if (e.action_type === AddRemove.add) return res(ctx.status(200));
   }),
 ];
