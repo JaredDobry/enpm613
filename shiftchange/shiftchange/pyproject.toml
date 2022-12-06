@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "shiftchange"
+version = "0.1.0"
+description = ""
+authors = ["Jared Dobry <jareddobry10@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.8.0"
+flake8 = "^5.0.4"
+pre-commit = "^2.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
