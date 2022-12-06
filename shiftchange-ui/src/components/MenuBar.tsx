@@ -13,7 +13,7 @@ import { Settings, SettingsProps } from "./Settings";
 
 interface MenuBarProps extends SettingsProps {
   accountType: ApiLoginTypes;
-  setPage: (page: "home" | "assignment" | "management") => void;
+  setPage: (page: string) => void;
   signOut: () => void;
   theme: Theme;
 }
@@ -41,6 +41,12 @@ export const MenuBar: React.FC<MenuBarProps> = (props) => {
             iconProps={{ iconName: "Home" }}
             onClick={() => props.setPage("home")}
             text="ShiftChange"
+          />
+          <ActionButton
+            ariaLabel="Enroll in more classes"
+            iconProps={{ iconName: "AddEvent" }}
+            onClick={() => props.setPage("enroll")}
+            text="Enroll"
           />
           {props.accountType === ApiLoginTypes.professor && (
             <ActionButton

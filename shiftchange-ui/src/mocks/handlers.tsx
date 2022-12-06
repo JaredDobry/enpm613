@@ -66,6 +66,9 @@ export const handlers = [
       return res(ctx.status(404, `User ${userId} has no assignments`));
     } else return res(ctx.status(200), ctx.json(assignments));
   }),
+  rest.get("/classes", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(mockClasses));
+  }),
   rest.get("/class/:classId", (req, res, ctx) => {
     const { classId } = req.params;
 

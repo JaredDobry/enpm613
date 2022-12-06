@@ -10,6 +10,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { ManagementPage } from "./pages/ManagementPage/ManagementPage";
 import { darkPalette, lightPalette, verticalStackTokens } from "./styles";
 import { RegisterPage } from "./pages/RegisterPage";
+import { EnrollPage } from "./pages/EnrollPage/EnrollPage";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState<boolean>(true);
@@ -28,7 +29,7 @@ const App: React.FC = () => {
             accountType={loginType}
             darkMode={darkMode}
             setDarkMode={setDarkMode}
-            setPage={(page: "home" | "assignment" | "management") => {
+            setPage={(page: string) => {
               setPage(page);
               setPageData(undefined);
             }}
@@ -61,6 +62,9 @@ const App: React.FC = () => {
             token={token}
             userId="1"
           />
+        )}
+        {page === "enroll" && token && (
+          <EnrollPage token={token} userId={"1"} />
         )}
         {page === "assignment" && token && (
           <AssignmentPage

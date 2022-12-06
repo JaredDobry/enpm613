@@ -13,6 +13,7 @@ export const USER_URL = (userId: string) => {
 export const ENROLLMENTS_URL = (userId: string) => {
   return `${USER_URL(userId)}/enrollments`;
 };
+export const CLASSES_URL = `${BASE_URL}/classes`;
 export const CLASS_URL = (classId: string) => {
   return `${BASE_URL}/class/${classId}`;
 };
