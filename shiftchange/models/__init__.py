@@ -3,3 +3,8 @@ from models.user import UserModel
 from models.course import CourseModel
 from models.assignment import AssignmentModel
 from models.exam import ExamModel
+from models.professor import ProfessorModel
+from models.student import StudentModel
+from models.admin import AdminModel
+from models.examsubmission import ExamSubmissionModel
+from models.assignmetsubmission import AssignmentSubmissionModel

@@ -41,3 +41,4 @@ class CourseList(MethodView):
             abort(500, message="An error occurred creating the course.")
 
         return course
+
